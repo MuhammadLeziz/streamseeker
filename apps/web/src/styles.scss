@@ -72,3 +72,12 @@ body {
 .leaflet-control-attribution a {
   color: var(--text-secondary);
 }
+
+/* On a phone the player becomes a bottom sheet and takes the corner the zoom
+   buttons occupied. Touch pinch-zoom covers the same ground, so the control
+   steps aside rather than fighting for the space. */
+@media (max-width: 720px) {
+  .leaflet-control-zoom {
+    display: none;
+  }
+}

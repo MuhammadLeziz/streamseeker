@@ -41,13 +41,43 @@ import type { IStream } from '@world-watcher/shared';
   `,
   styles: [
     `
+      /* The player floats over the map in the bottom corner instead of sitting
+         in a column. The host is only an anchor, so it lets clicks through to
+         the map; the card itself takes them back. */
+      :host {
+        position: absolute;
+        inset-block-end: var(--hud-inset);
+        inset-inline-end: var(--hud-inset);
+        z-index: var(--z-float);
+        inline-size: min(var(--player-width), calc(100% - var(--hud-inset) * 2));
+        pointer-events: none;
+      }
+
       .player {
         display: flex;
         flex-direction: column;
         gap: 0.625rem;
-        padding: 0.875rem 1rem 1rem;
-        border-block-start: 1px solid var(--line);
-        background: var(--bg-panel);
+        padding: 0.75rem;
+        border: 1px solid var(--line-strong);
+        border-radius: var(--radius-lg);
+        background: var(--glass);
+        backdrop-filter: blur(20px) saturate(1.4);
+        box-shadow: var(--shadow-float);
+        pointer-events: auto;
+        animation: player-in var(--transition) both;
+      }
+
+      @keyframes player-in {
+        from {
+          opacity: 0;
+          transform: translateY(0.5rem);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .player {
+          animation: none;
+        }
       }
 
       .player__head {
@@ -133,6 +163,23 @@ import type { IStream } from '@world-watcher/shared';
         font-size: 0.75rem;
         line-height: 1.55;
         color: var(--text-secondary);
+      }
+
+      /* On a phone the corner card would cover the map it belongs to, so it
+         becomes a bottom sheet spanning the width instead. */
+      @media (max-width: 720px) {
+        :host {
+          inset-inline: var(--hud-inset);
+          /* The sheet spans the width here, so it would sit on top of the map
+             attribution. Lifting it by one line keeps the credit readable,
+             which the OpenStreetMap licence requires. */
+          inset-block-end: calc(var(--hud-inset) + 1.125rem);
+          inline-size: auto;
+        }
+
+        .player__description {
+          display: none;
+        }
       }
     `,
   ],

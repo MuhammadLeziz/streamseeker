@@ -50,7 +50,12 @@ import { categoryLabel } from './category-filter';
   `,
   styles: [
     `
+      /* The panel is wide and short, so the list flows into as many columns as
+         fit rather than running as one thin strip down the middle. */
       .list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+        gap: 0.125rem;
         margin: 0;
         padding: 0;
         list-style: none;

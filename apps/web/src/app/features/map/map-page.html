@@ -1,63 +1,75 @@
 <div class="layout">
-  <aside class="sidebar">
-    <header class="brand">
-      <span class="brand__mark" aria-hidden="true"></span>
-      <span class="brand__name">World Watcher</span>
-      <span class="brand__count">{{ visibleCount() }}</span>
-    </header>
+  <app-stream-map
+    [streams]="streams()"
+    [selectedId]="selected()?.id ?? null"
+    (streamSelected)="onStreamSelected($event)"
+  />
 
-    <div class="search">
+  <!-- Everything below floats over the map. The map is the page; the
+       interface is a thin layer on top of it that gets out of the way. -->
+  <div class="hud">
+    <div class="bar" [class.bar--open]="panelOpen()">
+      <span class="bar__mark" aria-hidden="true"></span>
+      <span class="bar__name">World Watcher</span>
+
+      <span class="bar__divider" aria-hidden="true"></span>
+
       <input
+        #searchInput
         type="search"
-        class="search__input"
+        class="bar__input"
         placeholder="Search a place, city or tag"
         aria-label="Search streams"
+        [attr.aria-expanded]="panelOpen()"
+        aria-controls="results-panel"
         [value]="filters().search"
         (input)="onSearch($event)"
+        (focus)="onSearchFocus()"
       />
+
+      <button
+        type="button"
+        class="bar__toggle"
+        [class.bar__toggle--active]="panelOpen()"
+        [attr.aria-expanded]="panelOpen()"
+        aria-controls="results-panel"
+        (click)="onPanelToggled()"
+      >
+        <svg viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M2 4h12M4.5 8h7M7 12h2" />
+        </svg>
+        <span class="bar__count">{{ visibleCount() }}</span>
+      </button>
     </div>
 
-    <div class="scroll">
-      <section class="block">
-        <div class="block__head">
-          <h2 class="block__title">Categories</h2>
+    @if (panelOpen()) {
+      <div class="panel" id="results-panel">
+        <div class="panel__filters">
+          <app-category-filter
+            [options]="categories()"
+            [selected]="filters().categories"
+            (categoryToggled)="onCategoryToggled($event)"
+          />
           @if (hasFilters()) {
-            <button type="button" class="link" (click)="onFiltersReset()">Clear</button>
+            <button type="button" class="panel__clear" (click)="onFiltersReset()">Clear</button>
           }
         </div>
-        <app-category-filter
-          [options]="categories()"
-          [selected]="filters().categories"
-          (categoryToggled)="onCategoryToggled($event)"
-        />
-      </section>
 
-      <section class="block">
-        <div class="block__head">
-          <h2 class="block__title">Streams</h2>
+        <div class="panel__results">
+          @if (error(); as message) {
+            <p class="panel__error">{{ message }}</p>
+          } @else {
+            <app-stream-list
+              [streams]="streams()"
+              [selectedId]="selected()?.id ?? null"
+              [loading]="loading()"
+              (streamSelected)="onStreamSelected($event)"
+            />
+          }
         </div>
+      </div>
+    }
+  </div>
 
-        @if (error(); as message) {
-          <p class="error">{{ message }}</p>
-        } @else {
-          <app-stream-list
-            [streams]="streams()"
-            [selectedId]="selected()?.id ?? null"
-            [loading]="loading()"
-            (streamSelected)="onStreamSelected($event)"
-          />
-        }
-      </section>
-    </div>
-
-    <app-stream-player [stream]="selected()" (closed)="onPlayerClosed()" />
-  </aside>
-
-  <main class="map-area">
-    <app-stream-map
-      [streams]="streams()"
-      [selectedId]="selected()?.id ?? null"
-      (streamSelected)="onStreamSelected($event)"
-    />
-  </main>
+  <app-stream-player [stream]="selected()" (closed)="onPlayerClosed()" />
 </div>

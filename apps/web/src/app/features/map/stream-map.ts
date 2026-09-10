@@ -18,6 +18,12 @@ const INITIAL_CENTER: L.LatLngExpression = [30, 45];
 const INITIAL_ZOOM = 3;
 const FOCUS_ZOOM = 12;
 
+/**
+ * The search bar floats at the top and the player in the bottom-right corner,
+ * which leaves the bottom-left as the one corner nothing else claims.
+ */
+const CONTROL_CORNER = 'bottomleft' as const;
+
 @Component({
   selector: 'app-stream-map',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -73,13 +79,24 @@ export class StreamMapComponent implements AfterViewInit, OnDestroy {
       zoom: INITIAL_ZOOM,
       minZoom: 2,
       worldCopyJump: true,
-      zoomControl: true,
+      // Both default controls are re-added below in the corner the floating
+      // interface leaves free. Leaflet offers no option for their position, so
+      // they have to be switched off and constructed by hand.
+      zoomControl: false,
+      attributionControl: false,
     });
+
+    // Order matters: within one corner Leaflet stacks controls in the order
+    // they are added, and the credit belongs at the very bottom.
+    L.control
+      .attribution({ position: CONTROL_CORNER, prefix: false })
+      .addAttribution('&copy; OpenStreetMap contributors')
+      .addTo(this.map);
+    L.control.zoom({ position: CONTROL_CORNER }).addTo(this.map);
 
     // Plain OSM tiles: free and keyless. CARTO and Stadia have both closed
     // their basemaps behind an API key.
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors',
       maxZoom: 19,
     }).addTo(this.map);
 

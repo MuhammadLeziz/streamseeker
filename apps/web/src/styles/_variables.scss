@@ -9,8 +9,9 @@
  *               the dot beside a category name
  *   --live      stream status, red, used nowhere else
  *
- * One radius across the interface: 8px. The documented exception is status
- * badges, which are pills because they are labels rather than controls.
+ * One radius across the interface: 8px for controls, 14px for the surfaces
+ * that float over the map. The documented exception is status badges, which
+ * are pills because they are labels rather than controls.
  */
 :root {
   --font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -35,13 +36,31 @@
 
   --live: #e5484d;
 
+  /* Panels float over the map instead of framing it. The blur behind them is
+     an enhancement, not a load-bearing part of the design: browsers that skip
+     backdrop-filter would leave map labels legible straight through a panel at
+     0.82, so the tint carries the contrast on its own and the blur only
+     softens what is left. */
+  --glass: #{rgba(#121417, 0.94)};
+  --shadow-float: 0 #{rem(16)} #{rem(40)} #{rgba(#000, 0.45)};
+
   --radius: #{rem(8)};
+  /* Floating surfaces are much larger than controls and need a larger radius;
+     8px on a 680px-wide panel reads as a square corner. */
+  --radius-lg: #{rem(14)};
   --radius-pill: 999px;
 
   /* Kept for the .container utility that ships with the starter. */
   --container-width: #{rem(1180)};
   --container-padding-inline: #{rem(16)};
 
-  --sidebar-width: #{rem(340)};
+  /* The floating search bar and the results panel share one width. */
+  --hud-width: #{rem(680)};
+  --hud-inset: #{rem(16)};
+  --player-width: #{rem(380)};
+  /* Leaflet gives its own controls z-index 800, so anything of ours meant to
+     float over them has to clear that. */
+  --z-float: 900;
+
   --transition: 160ms cubic-bezier(0.32, 0.72, 0, 1);
 }
