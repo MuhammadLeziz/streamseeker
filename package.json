@@ -9,16 +9,27 @@
   ],
   "scripts": {
     "start:web": "npm run build:catalogue && npm run start -w @world-watcher/web",
-    "build": "npm run build:shared && npm run build:catalogue && npm run build:web",
+    "build": "npm run build:shared && npm run build:catalogue && npm run build:web && npm run build:api",
     "build:shared": "npm run build -w @world-watcher/shared",
     "build:web": "npm run build -w @world-watcher/web",
     "test": "npm run test --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
     "lint:fix": "npm run lint:fix --workspaces --if-present",
     "prettier": "prettier --write .",
-    "build:catalogue": "node scripts/build-catalogue.mjs"
+    "build:catalogue": "node scripts/build-catalogue.mjs",
+    "start:api": "npm run start -w @world-watcher/api",
+    "build:api": "npm run build -w @world-watcher/api",
+    "db:up": "docker compose up -d db",
+    "db:down": "docker compose down",
+    "db:generate": "npm run db:generate -w @world-watcher/api",
+    "db:migrate": "npm run db:migrate -w @world-watcher/api",
+    "db:seed": "npm run db:seed -w @world-watcher/api"
   },
   "devDependencies": {
     "prettier": "^3.9.6"
+  },
+  "allowScripts": {
+    "prisma@7.10.0": true,
+    "@prisma/engines@7.10.0": true
   }
 }

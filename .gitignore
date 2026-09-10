@@ -5,6 +5,7 @@ dist
 tmp
 out-tsc
 bazel-out
+*.tsbuildinfo
 
 # Node
 node_modules
@@ -50,3 +51,7 @@ Thumbs.db
 
 # Built from data/streams.seed.json by scripts/build-catalogue.mjs
 apps/web/public/streams.json
+
+# Prisma generates its client into node_modules, which is already ignored.
+# Migrations under apps/api/prisma/migrations are committed on purpose: they
+# are the record of how the schema got to its current shape.

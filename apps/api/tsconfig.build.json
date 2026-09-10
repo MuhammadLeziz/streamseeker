@@ -1,0 +1,9 @@
+{
+  // The build compiles the server alone. The seeder and the Prisma config are
+  // run by ts-node and by the Prisma CLI, never bundled into dist/.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "./src"
+  },
+  "exclude": ["node_modules", "dist", "prisma", "prisma.config.ts"]
+}

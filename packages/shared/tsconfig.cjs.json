@@ -1,0 +1,17 @@
+{
+  // A second build of the same sources for CommonJS consumers. NestJS runs on
+  // CommonJS and cannot `require` this package's ESM output.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "CommonJS",
+    // The base config sets `bundler`, which TypeScript only allows alongside
+    // an ESM `module`. CommonJS output needs the classic algorithm, and
+    // TypeScript 6 marks it deprecated rather than removed, so the opt-out is
+    // explicit here instead of silently inherited.
+    "moduleResolution": "node10",
+    "ignoreDeprecations": "6.0",
+    "declaration": false,
+    "declarationMap": false,
+    "outDir": "./dist/cjs"
+  }
+}

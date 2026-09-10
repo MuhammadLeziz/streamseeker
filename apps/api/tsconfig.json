@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "CommonJS",
+    "moduleResolution": "node10",
+    // NestJS builds on CommonJS, so this project cannot use the `bundler`
+    // resolution the rest of the repository uses. TypeScript 6 deprecates the
+    // classic algorithm rather than removing it; the opt-out is explicit.
+    "ignoreDeprecations": "6.0",
+    "lib": ["ES2023"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "declaration": false,
+    "sourceMap": true,
+    "removeComments": false,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "strictPropertyInitialization": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist",
+    // Set explicitly: the seeder and the config file sit outside src/, so
+    // TypeScript cannot infer one root that keeps the output layout stable.
+    "rootDir": "./",
+    "baseUrl": "./",
+    "incremental": true
+  },
+  "include": ["src/**/*.ts", "prisma/**/*.ts", "prisma.config.ts"],
+  "exclude": ["node_modules", "dist"]
+}

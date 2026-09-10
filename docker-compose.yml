@@ -1,0 +1,23 @@
+# PostgreSQL for local development. Nothing else runs here: the API and the web
+# app are started with npm so that watch mode and debugging behave normally.
+services:
+  db:
+    image: postgres:18-alpine
+    container_name: world-watcher-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: worldwatcher
+      POSTGRES_PASSWORD: worldwatcher
+      POSTGRES_DB: worldwatcher
+    ports:
+      - '5432:5432'
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U worldwatcher -d worldwatcher']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  db-data:

@@ -1,0 +1,91 @@
+// Database schema for the stream catalogue.
+//
+// The two enums below repeat lists that already exist in packages/shared. They
+// have to: Prisma generates PostgreSQL enum types from this file and cannot
+// read TypeScript. The duplication is checked at boot in src/streams/stream.mapper.ts,
+// which throws if the two sets ever drift apart.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum StreamCategory {
+  mosque
+  madrasa
+  ziyarat
+  city
+  bazaar
+  nature
+  mountain
+  beach
+  wildlife
+  airport
+  port
+  railway
+  sport
+  space
+  other
+}
+
+enum StreamStatus {
+  live
+  offline
+  unavailable
+  unchecked
+}
+
+model Stream {
+  id             String         @id @default(cuid())
+  /// YouTube video id, 11 characters. Unique: two map points must never lead
+  /// to the same video.
+  youtubeVideoId String         @unique
+  title          String
+  description    String?
+  category       StreamCategory
+
+  /// Coordinates of the camera, not of the city centre.
+  lat            Float
+  lng            Float
+
+  city           String?
+  /// ISO 3166-1 alpha-2, upper case. Regions are derived from this at read
+  /// time and deliberately not stored: a country's membership of `cis` or
+  /// `muslim-world` is a property of the country, not of the row.
+  countryCode    String         @db.Char(2)
+  /// IANA time zone, used to show local time at the camera.
+  timezone       String?
+
+  status         StreamStatus   @default(unchecked)
+  lastCheckedAt  DateTime?
+  viewerCount    Int?
+
+  featured       Boolean        @default(false)
+  /// The channel the stream comes from. Kept for curation, never sent to the
+  /// front end.
+  sourceChannel  String?
+
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  tags           StreamTag[]
+
+  @@index([category])
+  @@index([countryCode])
+  @@index([status])
+}
+
+/// Tags as rows rather than a String[] column. Search matches a prefix of each
+/// tag separately, and Prisma can express that over a relation
+/// (`tags: { some: { value: { startsWith } } }`) but not over an array column.
+model StreamTag {
+  streamId String
+  value    String
+  stream   Stream @relation(fields: [streamId], references: [id], onDelete: Cascade)
+
+  @@id([streamId, value])
+  @@index([value])
+}
