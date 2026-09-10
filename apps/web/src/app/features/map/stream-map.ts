@@ -13,7 +13,7 @@ import * as L from 'leaflet';
 import { CATEGORY_META } from '@world-watcher/shared';
 import type { IStream } from '@world-watcher/shared';
 
-/** Стартовый вид: Ближний Восток и Центральная Азия в кадре. */
+/** Opening view: Middle East and Central Asia in frame. */
 const INITIAL_CENTER: L.LatLngExpression = [30, 45];
 const INITIAL_ZOOM = 3;
 const FOCUS_ZOOM = 12;
@@ -50,8 +50,8 @@ export class StreamMapComponent implements AfterViewInit, OnDestroy {
   private resizeObserver?: ResizeObserver;
 
   constructor() {
-    // Маркеры перерисовываем только после того, как карта создана:
-    // до ngAfterViewInit контейнера ещё нет и Leaflet падает.
+    // Markers are only drawn once the map exists. Before ngAfterViewInit
+    // there is no container and Leaflet throws.
     effect(() => {
       const streams = this.streams();
       if (this.map) {
@@ -76,16 +76,16 @@ export class StreamMapComponent implements AfterViewInit, OnDestroy {
       zoomControl: true,
     });
 
-    // Стандартные тайлы OSM: бесплатные и без ключа. У CARTO и Stadia
-    // подложки закрыты API-ключом, поэтому они здесь не подходят.
+    // Plain OSM tiles: free and keyless. CARTO and Stadia have both closed
+    // their basemaps behind an API key.
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; участники OpenStreetMap',
+      attribution: '&copy; OpenStreetMap contributors',
       maxZoom: 19,
     }).addTo(this.map);
 
-    // Leaflet кеширует размер контейнера в момент создания, а грид к этому
-    // моменту ещё не разложен — карта получается в несколько пикселей.
-    // Наблюдатель чинит и это, и обычный ресайз окна.
+    // Leaflet caches the container size at construction, before the grid has
+    // laid out, which leaves the map a few pixels tall. The observer fixes
+    // both that and ordinary window resizing.
     this.resizeObserver = new ResizeObserver(() => this.map?.invalidateSize());
     this.resizeObserver.observe(this.host().nativeElement);
 

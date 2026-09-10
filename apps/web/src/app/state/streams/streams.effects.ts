@@ -19,7 +19,7 @@ export class StreamsEffects {
           catchError((error: unknown) =>
             of(
               StreamsApiActions.loadFailed({
-                error: error instanceof Error ? error.message : 'Не удалось загрузить трансляции',
+                error: error instanceof Error ? error.message : 'Could not load the catalogue',
               }),
             ),
           ),

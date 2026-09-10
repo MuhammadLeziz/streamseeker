@@ -6,11 +6,12 @@ export interface ICategoryOption extends ICategoryMeta {
 }
 
 /**
- * Английские подписи категорий. Ключи приходят из shared, чтобы бэкенд и фронт
- * не разъезжались; сам перевод живёт здесь, потому что это слой представления.
+ * Category labels. Keys come from shared so the backend and the front end
+ * cannot drift apart; the wording itself belongs to the view layer.
  *
- * "Shrines" вместо кальки "Ziyarat": для англоязычного читателя это понятное
- * слово, а идентификатор категории в данных остаётся ziyarat.
+ * "Shrines" rather than a transliterated "Ziyarat": the English word carries
+ * meaning for an English reader, while the category id in the data is
+ * unchanged.
  */
 const LABELS: Record<string, string> = {
   'category.mosque': 'Mosques',

@@ -29,8 +29,8 @@ function matchesFilters(stream: IStream, filters: IStreamFilters): boolean {
     return false;
   }
 
-  // Регионы объединяем по ИЛИ: выбрав «СНГ» и «Ближний Восток»,
-  // пользователь ожидает увидеть трансляции из обоих, а не их пересечение.
+  // Regions combine with OR. Someone who ticks both CIS and Middle East
+  // expects streams from either, not the intersection of the two.
   if (filters.regions.length > 0 && !filters.regions.some((r) => stream.regions.includes(r))) {
     return false;
   }
@@ -62,8 +62,8 @@ export const selectLiveCount = createSelector(
 );
 
 /**
- * Счётчики по категориям — считаются по всему каталогу, а не по отфильтрованному
- * списку, чтобы цифра рядом с чекбоксом не менялась от собственного выбора.
+ * Per-category counts, taken over the whole catalogue rather than the filtered
+ * list, so the number beside a checkbox does not react to its own selection.
  */
 export const selectCategoryCounts = createSelector(selectAllStreams, (streams) => {
   const counts = Object.fromEntries(STREAM_CATEGORIES.map((category) => [category, 0])) as Record<
@@ -78,7 +78,7 @@ export const selectCategoryCounts = createSelector(selectAllStreams, (streams) =
   return counts;
 });
 
-/** Категории, в которых есть хотя бы одна трансляция, — для рендера панели фильтров. */
+/** Categories holding at least one stream, for the filter panel. */
 export const selectAvailableCategories = createSelector(selectCategoryCounts, (counts) =>
   STREAM_CATEGORIES.filter((category) => counts[category] > 0).map((category) => ({
     ...CATEGORY_META[category],

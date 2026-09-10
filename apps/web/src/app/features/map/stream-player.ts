@@ -193,12 +193,11 @@ export class StreamPlayerComponent {
   private readonly frame = viewChild<ElementRef<HTMLIFrameElement>>('frame');
 
   /**
-   * Плеер всегда стартует без звука — иначе браузер целиком блокирует
-   * автозапуск. Раньше звуком управляла родная кнопка YouTube, и она
-   * рассинхронизировалась: иконка показывала «звук включён», а поток
-   * оставался приглушённым, пока не ткнёшь дважды. Теперь состояние держим
-   * у себя и меняем его через IFrame API, так что иконка плеера и наша
-   * кнопка всегда согласованы.
+   * The player always starts muted, otherwise the browser blocks autoplay
+   * outright. Sound used to be handled by YouTube's own button, which drifted
+   * out of sync: the icon read as unmuted while the stream stayed silent until
+   * you toggled it twice. State now lives here and is applied through the
+   * IFrame API, so the player and our control always agree.
    */
   readonly muted = signal(true);
 
@@ -214,7 +213,7 @@ export class StreamPlayerComponent {
       mute: '1',
       playsinline: '1',
       rel: '0',
-      // enablejsapi открывает postMessage-канал, через который мы снимаем mute.
+      // enablejsapi opens the postMessage channel we use to unmute.
       enablejsapi: '1',
       origin,
     });
@@ -224,7 +223,7 @@ export class StreamPlayerComponent {
   });
 
   constructor() {
-    // Новый эфир — новый iframe, звук в нём снова выключен.
+    // A new stream means a new iframe, muted again.
     effect(() => {
       this.stream();
       this.muted.set(true);

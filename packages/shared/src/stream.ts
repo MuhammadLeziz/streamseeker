@@ -2,11 +2,11 @@ import type { StreamCategory } from './category.js';
 import type { Region } from './region.js';
 
 /**
- * Состояние YouTube-эфира. Проставляется фоновой проверкой на бэкенде,
- * фронтенд его только читает.
+ * State of a YouTube stream. Written by the backend liveness check; the front
+ * end only reads it.
  *
- * Оригинальный сайт статусы не отслеживает, поэтому со временем часть точек
- * там ведёт на удалённые видео. У нас мёртвые эфиры отсеиваются автоматически.
+ * The original site tracks no status at all, so over time a share of its map
+ * points lead to deleted videos. Here dead streams drop out on their own.
  */
 export const STREAM_STATUSES = ['live', 'offline', 'unavailable', 'unchecked'] as const;
 
@@ -21,37 +21,37 @@ export interface IStream {
   readonly id: string;
   readonly title: string;
   readonly description: string | null;
-  /** ID видео на YouTube, 11 символов. */
+  /** YouTube video id, 11 characters. */
   readonly youtubeVideoId: string;
   readonly category: StreamCategory;
   readonly location: IGeoPoint;
   readonly city: string | null;
-  /** ISO 3166-1 alpha-2, в верхнем регистре. */
+  /** ISO 3166-1 alpha-2, upper case. */
   readonly countryCode: string;
-  /** Выводится из `countryCode`, в базе не хранится. */
+  /** Derived from `countryCode`, never stored. */
   readonly regions: readonly Region[];
-  /** IANA-таймзона, например `Asia/Riyadh` — нужна, чтобы показать местное время точки. */
+  /** IANA time zone, e.g. `Asia/Riyadh`, used to show local time at the camera. */
   readonly timezone: string | null;
   readonly tags: readonly string[];
   readonly status: StreamStatus;
-  /** ISO-8601, момент последней проверки статуса. */
+  /** ISO-8601 timestamp of the last liveness check. */
   readonly lastCheckedAt: string | null;
   readonly viewerCount: number | null;
-  /** Ручной приоритет в выдаче: чем больше, тем выше. */
+  /** Manual promotion in listings. */
   readonly featured: boolean;
   readonly createdAt: string;
   readonly updatedAt: string;
 }
 
-/** Параметры запроса списка трансляций. */
+/** Query parameters for the stream list. */
 export interface IStreamFilter {
   readonly categories?: readonly StreamCategory[];
   readonly regions?: readonly Region[];
   readonly countryCodes?: readonly string[];
   readonly statuses?: readonly StreamStatus[];
-  /** Поиск по названию, городу и тегам. */
+  /** Matches title, city and tags. */
   readonly search?: string;
-  /** Видимая область карты: юг, запад, север, восток. */
+  /** Visible map area: south, west, north, east. */
   readonly bounds?: IMapBounds;
 }
 
@@ -74,8 +74,8 @@ export function isValidYoutubeVideoId(value: string): boolean {
 }
 
 /**
- * Достаёт ID видео из любой формы ссылки YouTube: `watch?v=`, `youtu.be/`,
- * `embed/` и `live/`. Нужно, чтобы в админку можно было вставить URL целиком.
+ * Pulls the video id out of any YouTube link shape: `watch?v=`, `youtu.be/`,
+ * `embed/` and `live/`. Lets the admin form accept a pasted URL as it is.
  */
 export function extractYoutubeVideoId(input: string): string | null {
   const trimmed = input.trim();

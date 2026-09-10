@@ -13,8 +13,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Маркеры карты. Лежат в глобальных стилях, потому что Leaflet вставляет
-   их через divIcon в собственный DOM, куда инкапсуляция компонента не достаёт. */
+/* Map pins live in global styles because Leaflet injects them through divIcon
+   into its own DOM, which component style encapsulation cannot reach. */
 .stream-pin__dot {
   display: block;
   inline-size: 14px;
@@ -37,16 +37,16 @@ body {
 }
 
 /*
- * Тёмная подложка карты.
+ * Dark basemap.
  *
- * Светлая карта рядом с тёмным интерфейсом выглядит как две разные страницы.
- * Готовых тёмных тайлов без API-ключа не осталось (CARTO и Stadia закрылись
- * ключами), поэтому инвертируем стандартный OSM: hue-rotate возвращает
- * материкам и воде правдоподобный оттенок после инверсии, а приглушённые
- * contrast и saturate убирают кислотность.
+ * A light map beside a dark interface reads as two different pages. No keyless
+ * dark tile provider is left (CARTO and Stadia both closed behind API keys),
+ * so the standard OSM raster is inverted instead: hue-rotate restores
+ * believable hues to land and water after the inversion, and the damped
+ * contrast and saturation take the acid out of it.
  *
- * Фильтр висит только на слое тайлов — маркеры и элементы управления Leaflet
- * лежат в других слоях и остаются в своих цветах.
+ * The filter sits on the tile layer alone. Markers and Leaflet controls live
+ * in other panes and keep their own colours.
  */
 .leaflet-tile-pane {
   filter: invert(1) hue-rotate(180deg) brightness(0.92) contrast(0.87) saturate(0.6);

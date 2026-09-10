@@ -1,9 +1,9 @@
 /**
- * Собирает data/streams.seed.json в статический каталог для фронтенда.
+ * Turns data/streams.seed.json into a static catalogue for the front end.
  *
- * Временная замена бэкенду: пока нет apps/api, Angular забирает готовый
- * JSON из public/. Когда появится NestJS, скрипт уедет в сидер Prisma,
- * а формат ответа останется тем же — фронт менять не придётся.
+ * A stand-in for the backend: until apps/api exists, Angular reads the JSON
+ * straight from public/. Once NestJS lands this moves into the Prisma seeder
+ * and the response shape stays the same, so the front end needs no change.
  */
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
@@ -21,10 +21,10 @@ const seenIds = new Set();
 
 const items = streams.map((raw, index) => {
   if (!isStreamCategory(raw.category)) {
-    throw new Error(`Неизвестная категория "${raw.category}" у записи #${index + 1}`);
+    throw new Error(`Unknown category "${raw.category}" in entry #${index + 1}`);
   }
   if (seenIds.has(raw.youtubeVideoId)) {
-    throw new Error(`Дубликат videoId ${raw.youtubeVideoId} у записи #${index + 1}`);
+    throw new Error(`Duplicate videoId ${raw.youtubeVideoId} in entry #${index + 1}`);
   }
   seenIds.add(raw.youtubeVideoId);
 
@@ -40,7 +40,7 @@ const items = streams.map((raw, index) => {
     regions: regionsOfCountry(raw.countryCode),
     timezone: raw.timezone ?? null,
     tags: raw.tags ?? [],
-    // Статус проставит бэкенд, когда появится проверка живости.
+    // Status is filled in by the backend once the liveness check exists.
     status: 'unchecked',
     lastCheckedAt: null,
     viewerCount: null,
@@ -53,4 +53,4 @@ const items = streams.map((raw, index) => {
 mkdirSync(dirname(target), { recursive: true });
 writeFileSync(target, JSON.stringify({ items, total: items.length }, null, 2) + '\n');
 
-console.log(`Каталог собран: ${items.length} трансляций -> ${target}`);
+console.log(`Catalogue built: ${items.length} streams -> ${target}`);

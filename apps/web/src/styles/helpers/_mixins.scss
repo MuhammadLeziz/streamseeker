@@ -1,6 +1,6 @@
 @use 'sass:math';
 
-// 1. Адаптивный шрифт (fluid typography)
+// 1. Fluid typography
 @mixin fluid-text($max: 48, $min: 16) {
   $maxViewportWidth: 1440;
   $minViewportWidth: 360;
@@ -20,11 +20,11 @@
   );
 }
 
-// $max — размер из desktop макета (px без единиц)
-// $min — размер из мобильного макета (px без единиц)
-// Пример: @include fluid-text(48, 24);
+// $max is the size from the desktop mockup, in unitless px
+// $min is the size from the mobile mockup, in unitless px
+// Example: @include fluid-text(48, 24);
 
-// 2. Универсальный fluid для любого CSS-свойства
+// 2. Generic fluid value for any CSS property
 @mixin fluid($property, $max, $min) {
   $maxViewportWidth: 1440;
   $minViewportWidth: 360;
@@ -44,7 +44,7 @@
   );
 }
 
-// 3. Скрыть / показать через opacity+visibility
+// 3. Hide and show through opacity plus visibility
 @mixin hide {
   opacity: 0;
   visibility: hidden;
@@ -55,19 +55,19 @@
   visibility: visible;
 }
 
-// 4. Центрирование через flex
+// 4. Centring with flex
 @mixin flex-center($isInline: false) {
   @if $isInline {
-    display: inline-flex; // по размеру контента
+    display: inline-flex; // sized to its content
   } @else {
-    display: flex; // на всю ширину
+    display: flex; // full width
   }
 
   justify-content: center;
   align-items: center;
 }
 
-// 5. Абсолютное центрирование (родитель должен иметь position: relative)
+// 5. Absolute centring; the parent needs position: relative
 @mixin abs-center {
   position: absolute;
   top: 50%;
@@ -75,15 +75,15 @@
   translate: -50% -50%;
 }
 
-// 6. Квадратный элемент
+// 6. Square element
 @mixin square($size) {
   width: $size;
   height: $size;
 }
 
-// @include square(rem(48)); → 48x48px
+// @include square(rem(48)); gives a 48x48px box
 
-// 7. Visually hidden (скрыт визуально, доступен скринридерам)
+// 7. Visually hidden: off screen but still read by screen readers
 @mixin visually-hidden {
   position: absolute !important;
   width: 1px !important;

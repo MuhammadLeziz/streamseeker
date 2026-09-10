@@ -42,9 +42,9 @@ module.exports = defineConfig([
       // 'padded-blocks': ['error', { classes: 'always' }],
       quotes: ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
       'object-curly-spacing': ['warn', 'always'],
-      // template-curly-spacing отключено намеренно: с 'always' оно требует
-      // пробелы внутри ${ }, а prettier их убирает. Правила конфликтуют,
-      // из-за чего любой шаблонный литерал не проходит линт.
+      // template-curly-spacing is off on purpose. With 'always' it demands
+      // spaces inside ${ } and prettier strips them, so the two rules fight
+      // and every template literal fails lint.
       'template-curly-spacing': 'off',
       semi: 'warn',
       'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],

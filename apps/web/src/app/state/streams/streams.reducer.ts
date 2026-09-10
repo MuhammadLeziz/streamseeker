@@ -20,7 +20,7 @@ export interface IStreamsState extends EntityState<IStream> {
   readonly selectedId: string | null;
 }
 
-// selectId не задаём: у IStream есть поле id, NgRx подхватит его сам.
+// No selectId: IStream already has an id field and NgRx picks it up.
 export const streamsAdapter = createEntityAdapter<IStream>({
   sortComparer: (a, b) => a.title.localeCompare(b.title),
 });
@@ -39,7 +39,7 @@ const initialState: IStreamsState = streamsAdapter.getInitialState({
   selectedId: null,
 });
 
-/** Добавляет значение в список или убирает его, если оно уже там. */
+/** Adds a value to the list, or removes it when already present. */
 function toggle<T>(list: readonly T[], value: T): T[] {
   return list.includes(value) ? list.filter((item) => item !== value) : [...list, value];
 }

@@ -1,62 +1,93 @@
 # World Watcher
 
-Карта прямых трансляций со всего мира. Своя версия идеи
-[worldwatcher.live](https://worldwatcher.live/) с упором на исламские страны и СНГ.
+A map of live streams from around the world, with the densest coverage over the
+Muslim world and the CIS. Inspired by [worldwatcher.live](https://worldwatcher.live/),
+not a copy of it.
 
-## Чем отличается от оригинала
+## What is different here
 
-- Религиозные места разбиты на **мечети**, **медресе** и **зияраты** вместо одной общей категории.
-- Добавлены **базары** и **горы**.
-- Быстрые фильтры по регионам: **СНГ** и **мусульманский мир**.
-- Статус эфира отслеживается автоматически, мёртвые трансляции не показываются.
+- Religious places are split into **mosques**, **madrasas** and **shrines**
+  instead of sitting in one generic bucket.
+- Two categories the original does not have: **bazaars** and **mountains**.
+- Region filters for the **CIS** and the **Muslim world**. Regions overlap on
+  purpose: Uzbekistan belongs to all of CIS, Central Asia and the Muslim world.
+- Stream liveness is tracked, so dead videos drop off the map instead of
+  quietly rotting into broken links.
+- Busy locations carry a backup feed. If the primary stream dies, the map point
+  survives on the spare.
 
-## Стек
+## Stack
 
-| Слой | Технологии |
+| Layer | Technology |
 | --- | --- |
-| Фронтенд | Angular 22, NgRx 22 (Store / Effects / Entity), Leaflet |
-| Бэкенд | NestJS 12, PostgreSQL, Prisma |
+| Front end | Angular 22, NgRx 22 (Store, Effects, Entity), Leaflet |
+| Back end | NestJS 12, PostgreSQL, Prisma |
 | CI/CD | GitLab CI |
-| Инфраструктура | Docker, docker-compose |
+| Infrastructure | Docker, docker compose |
 
-## Структура
+## Layout
 
 ```
-apps/web        Angular-приложение
-apps/api        NestJS API (в работе)
-packages/shared Общие типы и доменная логика
+apps/web         Angular application
+apps/api         NestJS API (not built yet)
+packages/shared  Domain model shared by both sides
+data             Curated stream catalogue
+scripts          Build helpers
 ```
 
-Монорепо на npm workspaces. Типы `IStream` и `StreamCategory` описаны один раз
-в `packages/shared` и используются и фронтом, и бэком.
+An npm workspaces monorepo. `IStream` and `StreamCategory` are declared once in
+`packages/shared` and used by both the front end and the API, so the two cannot
+drift apart.
 
-## Запуск
+## Running it
 
 ```bash
 npm install
-npm run build:shared
+```
+
+```bash
 npm run start:web
 ```
 
-`packages/shared` собирается в `dist/`, поэтому его нужно собрать до первого
-запуска приложения и пересобирать после правок в общих типах:
+The app comes up on `http://localhost:4200`.
+
+`packages/shared` compiles to `dist/`, so it has to be built before the app runs
+and rebuilt after any change to the shared types:
 
 ```bash
 npm run build:shared
 ```
 
-## Команды
+## Commands
 
-| Команда | Что делает |
+| Command | What it does |
 | --- | --- |
-| `npm run start:web` | Дев-сервер Angular на `http://localhost:4200` |
-| `npm run build` | Сборка всех пакетов |
-| `npm run lint` | ESLint + Prettier по всем воркспейсам |
-| `npm run lint:fix` | То же с автоисправлением |
-| `npm run test` | Юнит-тесты (Vitest) |
+| `npm run start:web` | Angular dev server on port 4200 |
+| `npm run build` | Build every package |
+| `npm run build:catalogue` | Rebuild the static catalogue from `data/streams.seed.json` |
+| `npm run lint` | ESLint and Prettier across all workspaces |
+| `npm run lint:fix` | The same, with auto-fixes applied |
+| `npm run test` | Unit tests (Vitest) |
 
-## Соглашения
+## The catalogue
 
-- Интерфейсы пишутся с префиксом `I` (`IStream`, `IStreamsState`) — это правило
-  `@typescript-eslint/naming-convention` в `apps/web/eslint.config.js`.
-- Форматированием владеет Prettier, стилистические правила ESLint с ним не спорят.
+Streams live in [`data/streams.seed.json`](data/streams.seed.json). Every entry
+carries the camera coordinates rather than the city centre, a category, a
+country code and the source channel.
+
+`npm run build:catalogue` turns that file into `apps/web/public/streams.json`,
+deriving regions from the country code and rejecting unknown categories and
+duplicate video ids. The generated file is not committed. Once the API exists,
+this step becomes the Prisma seeder and the response shape stays as it is.
+
+Only official broadcasters are used where they exist. Small channels tend to
+restream someone else's feed, and those are the first to go dark.
+
+## Conventions
+
+- Interfaces carry an `I` prefix (`IStream`, `IStreamsState`), enforced by
+  `@typescript-eslint/naming-convention` in `apps/web/eslint.config.js`.
+- Prettier owns formatting. ESLint stylistic rules that fight it are turned off.
+- Colour has three separate roles that never mix: one amber accent for
+  interaction, category hues purely as data encoding, red reserved for live
+  status.

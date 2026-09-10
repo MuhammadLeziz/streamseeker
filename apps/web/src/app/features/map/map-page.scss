@@ -13,9 +13,9 @@
 
 .sidebar {
   display: grid;
-  /* Шапка и поиск закреплены, список скроллится, плеер прижат к низу.
-     Из-за minmax(0, 1fr) средняя строка может сжиматься, иначе длинный
-     список распирает сетку и плеер уезжает за экран. */
+  /* Header and search are pinned, the list scrolls, the player sits at the
+     bottom. minmax(0, 1fr) lets the middle row shrink; without it a long list
+     stretches the grid and pushes the player off screen. */
   grid-template-rows: auto auto minmax(0, 1fr) auto;
   border-inline-end: 1px solid var(--line);
   background: var(--bg-panel);
@@ -73,9 +73,12 @@
   color: var(--text-muted);
 }
 
-.search__input:focus {
+.search__input:focus-visible {
+  /* A border colour change alone is a weak focus indicator, so pair it with a
+     ring that carries enough contrast on its own. */
   outline: none;
   border-color: var(--accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 35%, transparent);
 }
 
 .scroll {

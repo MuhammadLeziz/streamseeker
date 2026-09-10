@@ -52,10 +52,10 @@ $mobile-s: 490.98;
   }
 }
 
-// hover-миксин — правильная работа на всех устройствах
+// hover mixin that behaves correctly on every device
 @mixin hover($hasActiveEffectOnMobile: true) {
   @media (any-hover: hover) {
-    // any-hover: hover → есть устройство с hover (мышь/тачпад)
+    // any-hover: hover means a pointing device is present (mouse, trackpad)
     &:hover {
       @content;
     }
@@ -63,9 +63,9 @@ $mobile-s: 490.98;
 
   @if ($hasActiveEffectOnMobile) {
     @media (any-hover: none) {
-      // any-hover: none → только сенсорный экран, hover недоступен
+      // any-hover: none means touch only, where hover never fires
       &:active {
-        @content; // заменяем hover на active для телефонов
+        @content; // fall back from hover to active on phones
       }
     }
   }

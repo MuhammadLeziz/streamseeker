@@ -2,8 +2,8 @@ export const environment = {
   production: true,
   apiUrl: '/api',
   /**
-   * Пока нет apps/api, каталог отдаётся статическим файлом из public/.
-   * Когда появится бэкенд, здесь будет `${apiUrl}/streams`.
+   * Until apps/api exists the catalogue ships as a static file from public/.
+   * Once the backend lands this becomes `${apiUrl}/streams`.
    */
   catalogueUrl: '/streams.json',
 };

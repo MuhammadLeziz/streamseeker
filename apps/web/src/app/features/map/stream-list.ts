@@ -130,8 +130,8 @@ import { categoryLabel } from './category-filter';
         max-inline-size: 34ch;
       }
 
-      /* Скелет повторяет геометрию реальной строки, чтобы список не прыгал
-         при загрузке. */
+      /* The skeleton mirrors the real row geometry so the list does not
+         jump when data arrives. */
       .skeleton {
         display: flex;
         align-items: flex-start;

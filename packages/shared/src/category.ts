@@ -1,9 +1,9 @@
 /**
- * Категории трансляций.
+ * Stream categories.
  *
- * Оригинальный worldwatcher.live держит религиозные места одной общей категорией.
- * Мы разделяем её на мечети, медресе и зияраты, а также добавляем базары —
- * это и есть наше отличие от оригинала.
+ * The original worldwatcher.live keeps every religious place in one bucket.
+ * We split it into mosques, madrasas and shrines, and add bazaars on top.
+ * That split is the point of difference, not decoration.
  */
 export const STREAM_CATEGORIES = [
   'mosque',
@@ -27,11 +27,11 @@ export type StreamCategory = (typeof STREAM_CATEGORIES)[number];
 
 export interface ICategoryMeta {
   readonly id: StreamCategory;
-  /** Ключ для i18n, например `category.mosque`. */
+  /** i18n key, for example `category.mosque`. */
   readonly labelKey: string;
-  /** Имя иконки в спрайте. */
+  /** Icon name in the sprite. */
   readonly icon: string;
-  /** HEX-цвет маркера на карте. */
+  /** Marker colour on the map, as hex. */
   readonly color: string;
 }
 

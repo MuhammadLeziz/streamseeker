@@ -48,5 +48,5 @@ Thumbs.db
 .env.local
 *.local.env
 
-# Каталог собирается скриптом из data/streams.seed.json
+# Built from data/streams.seed.json by scripts/build-catalogue.mjs
 apps/web/public/streams.json

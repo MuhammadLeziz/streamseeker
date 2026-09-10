@@ -11,10 +11,10 @@ export class StreamsApiService {
   private readonly http = inject(HttpClient);
 
   /**
-   * Забирает весь каталог трансляций одним запросом.
+   * Fetches the whole catalogue in one request.
    *
-   * Каталог небольшой (сотни точек), поэтому фильтрация живёт на клиенте
-   * в селекторах: переключение категорий работает мгновенно и не дёргает сеть.
+   * The catalogue is small, a few hundred points, so filtering lives on the
+   * client in selectors. Toggling a category is instant and touches no network.
    */
   loadAll(): Observable<IStream[]> {
     return this.http

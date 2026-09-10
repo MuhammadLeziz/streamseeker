@@ -1,3 +1,4 @@
-/* Geist подключён через Google Fonts в index.html.
-   Раньше здесь был @font-face на /fonts/NunitoSans-*.woff2 — файла в public/
-   никогда не было, поэтому шрифт всегда отдавал 404 и подставлялся системный. */
+/* Geist is loaded from Google Fonts in index.html.
+   This file used to carry an @font-face pointing at /fonts/NunitoSans-*.woff2.
+   That directory has never existed in public/, so the font always 404ed and
+   silently fell back to a system face. */

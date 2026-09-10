@@ -1,10 +1,11 @@
 /**
- * Регионы для быстрых фильтров на карте.
+ * Regions behind the quick filters on the map.
  *
- * `cis` и `muslim-world` — наши ключевые фильтры: именно из-за них
- * проект отличается от оригинала, где такой группировки нет.
- * Регионы не взаимоисключающие: Узбекистан входит и в `cis`,
- * и в `central-asia`, и в `muslim-world`.
+ * `cis` and `muslim-world` are the two that matter: the original site has no
+ * such grouping, and they are why this catalogue is worth building.
+ *
+ * Regions are not mutually exclusive. Uzbekistan belongs to `cis`,
+ * `central-asia` and `muslim-world` at once.
  */
 export const REGIONS = [
   'cis',
@@ -24,10 +25,10 @@ export const REGIONS = [
 
 export type Region = (typeof REGIONS)[number];
 
-/** Страны СНГ и постсоветского пространства (ISO 3166-1 alpha-2). */
+/** CIS and post-Soviet states, ISO 3166-1 alpha-2. */
 const CIS: readonly string[] = ['RU', 'BY', 'UA', 'MD', 'AM', 'AZ', 'GE', 'KZ', 'KG', 'TJ', 'TM', 'UZ'];
 
-/** Страны с преобладающим мусульманским населением. */
+/** States with a Muslim-majority population. */
 const MUSLIM_WORLD: readonly string[] = [
   'SA', 'AE', 'QA', 'KW', 'BH', 'OM', 'YE', 'JO', 'PS', 'LB', 'SY', 'IQ', 'IR', 'TR',
   'EG', 'LY', 'TN', 'DZ', 'MA', 'MR', 'SD', 'SO', 'DJ', 'KM',
@@ -38,7 +39,7 @@ const MUSLIM_WORLD: readonly string[] = [
   'AL', 'XK', 'BA',
 ];
 
-/** Географические регионы. Одна страна — ровно один географический регион. */
+/** Geographic regions. Every country belongs to exactly one. */
 const GEOGRAPHIC: Readonly<Record<string, Region>> = {
   KZ: 'central-asia', KG: 'central-asia', TJ: 'central-asia', TM: 'central-asia', UZ: 'central-asia',
   AM: 'caucasus', AZ: 'caucasus', GE: 'caucasus',
@@ -63,8 +64,8 @@ const GEOGRAPHIC: Readonly<Record<string, Region>> = {
 };
 
 /**
- * Возвращает все регионы страны: географический плюс тематические
- * (`cis`, `muslim-world`), если страна в них входит.
+ * Every region a country belongs to: its geographic one plus the thematic
+ * `cis` and `muslim-world` memberships where they apply.
  */
 export function regionsOfCountry(countryCode: string): Region[] {
   const code = countryCode.toUpperCase();

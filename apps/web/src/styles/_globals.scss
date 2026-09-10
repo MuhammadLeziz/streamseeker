@@ -21,12 +21,15 @@ a {
   color: inherit;
 
   @include hover {
-    color: var(--color-green);
+    color: var(--accent);
   }
 }
 
+/* The focus ring used to reference --color-green and --color-black from the
+   starter palette. Those tokens are gone, and a var() that resolves to nothing
+   invalidates the whole declaration, which silently removed the ring. */
 :focus-visible {
-  outline: #{rem(1)} dashed var(--color-black);
+  outline: #{rem(2)} solid var(--accent);
   outline-offset: #{rem(2)};
   transition-duration: 0s !important;
 }

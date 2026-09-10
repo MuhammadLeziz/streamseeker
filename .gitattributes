@@ -1,8 +1,8 @@
-# Нормализуем переводы строк: в репозитории всегда LF.
-# Локально Windows получит CRLF, а GitLab CI собирает на Linux.
+# Normalise line endings: always LF in the repository.
+# Windows checkouts get CRLF locally, while GitLab CI builds on Linux.
 * text=auto eol=lf
 
-# Бинарные файлы не трогаем.
+# Leave binary files alone.
 *.png binary
 *.jpg binary
 *.jpeg binary
