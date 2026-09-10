@@ -1,12 +1,12 @@
-# Manara
+# StreamSeeker
 
 A map of live streams from around the world, with the densest coverage over the
 Muslim world and the CIS. Inspired by [worldwatcher.live](https://worldwatcher.live/),
 not a copy of it.
 
-_Manara_ (منارة) is a lighthouse, and a minaret: from the root ن-و-ر, light. It
-stands high and looks out at the world, which is what this does. The name says
-nothing about which part of the world, so the map stays global.
+The name says what the thing does. There are thousands of cameras pointed at the
+world and no good way to find the one you want; the map and the search bar are
+the seeking, and everything else is in service of them.
 
 ## What is different here
 
@@ -114,19 +114,32 @@ catalogue ever outgrows a single response, `bounds` is the way to cut it down.
 | `npm run db:migrate`        | Apply migrations and regenerate the Prisma client          |
 | `npm run db:seed`           | Load `data/streams.seed.json` into the database            |
 | `npm run build:catalogue`   | Rebuild the static catalogue from `data/streams.seed.json` |
+| `npm run check:catalogue`   | The same, but ask YouTube about every entry first          |
 | `npm run lint`              | ESLint and Prettier across all workspaces                  |
 | `npm run lint:fix`          | The same, with auto-fixes applied                          |
 | `npm run test`              | Unit tests (Vitest)                                        |
 
 ## The catalogue
 
-Streams live in [`data/streams.seed.json`](data/streams.seed.json). Every entry
-carries the camera coordinates rather than the city centre, a category, a
-country code and the source channel.
+Streams live in [`data/streams.seed.json`](data/streams.seed.json) — 122 of them
+at the last count. Every entry carries the camera coordinates rather than the
+city centre, a category, a country code and the source channel.
 
 `npm run build:catalogue` turns that file into `apps/web/public/streams.json`,
 deriving regions from the country code and rejecting unknown categories and
 duplicate video ids. The generated file is not committed.
+
+`npm run check:catalogue` does the same and asks YouTube about every entry
+first, over oembed, which needs no API key. A video that is gone or that
+forbids embedding is written out as `unavailable` and the command exits
+non-zero; the front end then keeps it off the map entirely. That check is what
+a curated map needs to stop rotting, and it is not theoretical — three of the
+cameras that looked perfect in search results turned out to forbid embedding
+and would have been black rectangles.
+
+What it cannot tell you is whether a live stream is live _right now_: oembed
+only proves the video exists. That needs the YouTube Data API and a key, and it
+is what the liveness cron is for.
 
 `apps/api/prisma/seed.ts` reads the same file into PostgreSQL, matching on the
 YouTube video id so that re-running it updates rather than duplicates. Both

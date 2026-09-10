@@ -1,12 +1,15 @@
 {
-  "$comment": "Stream catalogue. Curated by hand, liveness verified by the backend cron. Coordinates point at the camera location, not the city centre.",
+  "$comment": "Stream catalogue. Curated by hand, embeddability verified by npm run check:catalogue. Coordinates point at the camera where it is known, and at the reserve or lodge for the wildlife cameras, which are deliberately not published to the metre.",
   "streams": [
     {
       "youtubeVideoId": "ZzobaiyOBxg",
       "title": "Masjid al-Haram",
       "description": "The Kaaba and the surrounding mataf, around the clock. Operated by Saudi Arabia's official Quran TV channel.",
       "category": "mosque",
-      "location": { "lat": 21.4225, "lng": 39.8262 },
+      "location": {
+        "lat": 21.4225,
+        "lng": 39.8262
+      },
       "city": "Mecca",
       "countryCode": "SA",
       "timezone": "Asia/Riyadh",
@@ -20,7 +23,10 @@
       "title": "Masjid al-Haram, second angle",
       "description": "A backup feed from the same mosque. If the primary stream drops, the map point stays alive instead of turning into a dead link.",
       "category": "mosque",
-      "location": { "lat": 21.4225, "lng": 39.8262 },
+      "location": {
+        "lat": 21.4225,
+        "lng": 39.8262
+      },
       "city": "Mecca",
       "countryCode": "SA",
       "timezone": "Asia/Riyadh",
@@ -30,11 +36,31 @@
       "verifiedAt": "2026-09-10"
     },
     {
+      "youtubeVideoId": "1u9nk3S4q4g",
+      "title": "Masjid al-Haram, third angle",
+      "description": "A third feed of the Grand Mosque from the same broadcaster. Mecca is the busiest point on this map and the one worth keeping redundant.",
+      "category": "mosque",
+      "location": {
+        "lat": 21.4225,
+        "lng": 39.8262
+      },
+      "city": "Mecca",
+      "countryCode": "SA",
+      "timezone": "Asia/Riyadh",
+      "tags": ["kaaba", "haram", "backup"],
+      "featured": false,
+      "sourceChannel": "القرآن الکریم",
+      "verifiedAt": "2026-09-10"
+    },
+    {
       "youtubeVideoId": "Rs7St51oDDc",
       "title": "Masjid an-Nabawi",
       "description": "The Prophet's Mosque in Medina, around the clock. Operated by Saudi Arabia's official Sunnah TV channel.",
       "category": "mosque",
-      "location": { "lat": 24.4672, "lng": 39.6111 },
+      "location": {
+        "lat": 24.4672,
+        "lng": 39.6111
+      },
       "city": "Medina",
       "countryCode": "SA",
       "timezone": "Asia/Riyadh",
@@ -48,11 +74,2003 @@
       "title": "Western Wall plaza",
       "description": "An EarthCam view over the plaza in Jerusalem's Old City. Al-Aqsa itself is out of frame: no permanent stream from the mosque exists on YouTube.",
       "category": "ziyarat",
-      "location": { "lat": 31.7767, "lng": 35.2345 },
+      "location": {
+        "lat": 31.7767,
+        "lng": 35.2345
+      },
       "city": "Jerusalem",
       "countryCode": "PS",
       "timezone": "Asia/Jerusalem",
       "tags": ["jerusalem", "old city"],
+      "featured": false,
+      "sourceChannel": "EarthCam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "1ZhUmb0N9f8",
+      "title": "Imam Ali Shrine",
+      "description": "The golden dome and courtyard at Najaf, from the shrine administration itself rather than a restream.",
+      "category": "ziyarat",
+      "location": {
+        "lat": 32.0299,
+        "lng": 44.3167
+      },
+      "city": "Najaf",
+      "countryCode": "IQ",
+      "timezone": "Asia/Baghdad",
+      "tags": ["najaf", "shrine", "ziyarat"],
+      "featured": true,
+      "sourceChannel": "Imam Ali Holy Shrine",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "g_Q23f6ngns",
+      "title": "Karbala, the two shrines",
+      "description": "The courtyards of Imam Hussein and al-Abbas, streamed by the Abbas shrine itself. Dozens of channels rebroadcast this feed; this is the source.",
+      "category": "ziyarat",
+      "location": {
+        "lat": 32.616,
+        "lng": 44.0325
+      },
+      "city": "Karbala",
+      "countryCode": "IQ",
+      "timezone": "Asia/Baghdad",
+      "tags": ["karbala", "shrine", "ziyarat"],
+      "featured": true,
+      "sourceChannel": "العتبة العباسية المقدسة",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "8DM0-afezZk",
+      "title": "Al-Kadhimiya Shrine",
+      "description": "The twin domes and four minarets in north-western Baghdad, from the shrine administration.",
+      "category": "ziyarat",
+      "location": {
+        "lat": 33.38,
+        "lng": 44.3378
+      },
+      "city": "Baghdad",
+      "countryCode": "IQ",
+      "timezone": "Asia/Baghdad",
+      "tags": ["kadhimiya", "baghdad", "shrine"],
+      "featured": false,
+      "sourceChannel": "Aljawadain Holy Shrine",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "0AbmrFZg78c",
+      "title": "Imam Reza Shrine",
+      "description": "The largest mosque in the world by area, at Mashhad, streamed by Astan Quds itself.",
+      "category": "ziyarat",
+      "location": {
+        "lat": 36.288,
+        "lng": 59.6157
+      },
+      "city": "Mashhad",
+      "countryCode": "IR",
+      "timezone": "Asia/Tehran",
+      "tags": ["mashhad", "shrine", "ziyarat"],
+      "featured": true,
+      "sourceChannel": "العتبة الرضوية المقدسة",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "lgQ8-E3rJ_4",
+      "title": "The Yiti cliffs, Muscat",
+      "description": "The coast south-east of Muscat, where the Hajar mountains meet the Gulf of Oman.",
+      "category": "city",
+      "location": {
+        "lat": 23.533,
+        "lng": 58.65
+      },
+      "city": "Muscat",
+      "countryCode": "OM",
+      "timezone": "Asia/Muscat",
+      "tags": ["oman", "yiti", "coast"],
+      "featured": false,
+      "sourceChannel": "DarGlobal",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "w_Dg2vC0tUE",
+      "title": "Nevsky Prospekt at Gostiny Dvor",
+      "description": "The busiest stretch of the main avenue, opposite the old merchant arcade.",
+      "category": "city",
+      "location": {
+        "lat": 59.9333,
+        "lng": 30.3339
+      },
+      "city": "Saint Petersburg",
+      "countryCode": "RU",
+      "timezone": "Europe/Moscow",
+      "tags": ["nevsky", "gostiny dvor"],
+      "featured": false,
+      "sourceChannel": "Mobotix Webcams Russia",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "RDchI1SLh4Q",
+      "title": "Nevsky Prospekt at Sadovaya",
+      "description": "The same avenue a block west, looking across the Sadovaya junction.",
+      "category": "city",
+      "location": {
+        "lat": 59.9325,
+        "lng": 30.329
+      },
+      "city": "Saint Petersburg",
+      "countryCode": "RU",
+      "timezone": "Europe/Moscow",
+      "tags": ["nevsky", "sadovaya"],
+      "featured": false,
+      "sourceChannel": "Алёна Юнусова",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "kjem5-kanuc",
+      "title": "Senate Square and the Bronze Horseman",
+      "description": "From the Admiralty Embankment pier across to Senate Square, with Peter the Great's monument and St Isaac's dome behind it.",
+      "category": "city",
+      "location": {
+        "lat": 59.9362,
+        "lng": 30.3035
+      },
+      "city": "Saint Petersburg",
+      "countryCode": "RU",
+      "timezone": "Europe/Moscow",
+      "tags": ["senate square", "bronze horseman", "neva"],
+      "featured": false,
+      "sourceChannel": "Mobotix Webcams Russia",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "LO_YkXikm1g",
+      "title": "Palace Embankment and the Neva",
+      "description": "The Neva looking upstream from the Palace pier, opposite the Hermitage. River traffic crosses the frame all day through the navigation season.",
+      "category": "city",
+      "location": {
+        "lat": 59.942,
+        "lng": 30.3145
+      },
+      "city": "Saint Petersburg",
+      "countryCode": "RU",
+      "timezone": "Europe/Moscow",
+      "tags": ["neva", "hermitage", "embankment"],
+      "featured": false,
+      "sourceChannel": "Mobotix Webcams Russia",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "CjtIYbmVfck",
+      "title": "Palace Bridge",
+      "description": "The bascule bridge over the Neva, which opens for shipping in the small hours of the night.",
+      "category": "city",
+      "location": {
+        "lat": 59.94,
+        "lng": 30.308
+      },
+      "city": "Saint Petersburg",
+      "countryCode": "RU",
+      "timezone": "Europe/Moscow",
+      "tags": ["palace bridge", "neva", "drawbridge"],
+      "featured": false,
+      "sourceChannel": "Mobotix Webcams Russia",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "byKS0r0Skn0",
+      "title": "Griboedov Canal",
+      "description": "A quiet stretch of canal in the centre, the city at the scale it was actually built to.",
+      "category": "city",
+      "location": {
+        "lat": 59.93,
+        "lng": 30.325
+      },
+      "city": "Saint Petersburg",
+      "countryCode": "RU",
+      "timezone": "Europe/Moscow",
+      "tags": ["griboedov", "canal"],
+      "featured": false,
+      "sourceChannel": "Mobotix Webcams Russia Live",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "jc3NRsILvr4",
+      "title": "Cruiser Aurora",
+      "description": "The 1900 cruiser at her permanent mooring on the Bolshaya Nevka.",
+      "category": "city",
+      "location": {
+        "lat": 59.9553,
+        "lng": 30.3383
+      },
+      "city": "Saint Petersburg",
+      "countryCode": "RU",
+      "timezone": "Europe/Moscow",
+      "tags": ["aurora", "cruiser", "nevka"],
+      "featured": false,
+      "sourceChannel": "Mobotix Webcams Russia Live",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "RK3qMhzILeA",
+      "title": "Hotel Indigo rooftop",
+      "description": "A steerable camera on a rooftop terrace, looking out over the roofs of the central districts.",
+      "category": "city",
+      "location": {
+        "lat": 59.9483,
+        "lng": 30.3556
+      },
+      "city": "Saint Petersburg",
+      "countryCode": "RU",
+      "timezone": "Europe/Moscow",
+      "tags": ["rooftop", "ptz", "skyline"],
+      "featured": false,
+      "sourceChannel": "Mobotix Webcams Russia Live",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "SbDfJLtMEww",
+      "title": "Petrogradsky Island",
+      "description": "North of the Neva, over the roofs of the Petrogradskaya side towards the centre.",
+      "category": "city",
+      "location": {
+        "lat": 59.96,
+        "lng": 30.31
+      },
+      "city": "Saint Petersburg",
+      "countryCode": "RU",
+      "timezone": "Europe/Moscow",
+      "tags": ["petrogradka", "skyline"],
+      "featured": false,
+      "sourceChannel": "Cams SPB",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "qV23r1I06zs",
+      "title": "Bogatyrsky Avenue crossroads",
+      "description": "An ordinary junction in the northern districts, which is most of what a city actually is.",
+      "category": "city",
+      "location": {
+        "lat": 59.9997,
+        "lng": 30.266
+      },
+      "city": "Saint Petersburg",
+      "countryCode": "RU",
+      "timezone": "Europe/Moscow",
+      "tags": ["crossroads", "traffic"],
+      "featured": false,
+      "sourceChannel": "Mobotix Webcams Russia Live",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "YZav4-plb4Y",
+      "title": "Samara riverfront",
+      "description": "The Volga bank at the Rossiya hotel, one of the longest embankments on the river.",
+      "category": "city",
+      "location": {
+        "lat": 53.2001,
+        "lng": 50.15
+      },
+      "city": "Samara",
+      "countryCode": "RU",
+      "timezone": "Europe/Samara",
+      "tags": ["volga", "embankment"],
+      "featured": false,
+      "sourceChannel": "LIVEPOINTS",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "z27rVbtegDk",
+      "title": "Chelyabinsk, South Ural University",
+      "description": "The university tower and the square in front of it, in the southern Urals.",
+      "category": "city",
+      "location": {
+        "lat": 55.16,
+        "lng": 61.37
+      },
+      "city": "Chelyabinsk",
+      "countryCode": "RU",
+      "timezone": "Asia/Yekaterinburg",
+      "tags": ["urals", "university"],
+      "featured": false,
+      "sourceChannel": "LIVEPOINTS",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "E4M-zK4r7ZY",
+      "title": "Perm, steerable city camera",
+      "description": "A camera the chat can aim, which makes the stream half a view and half a toy.",
+      "category": "city",
+      "location": {
+        "lat": 58.0105,
+        "lng": 56.2502
+      },
+      "city": "Perm",
+      "countryCode": "RU",
+      "timezone": "Asia/Yekaterinburg",
+      "tags": ["urals", "ptz"],
+      "featured": false,
+      "sourceChannel": "Mahoney CCTV live",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "_6thFzLFy2E",
+      "title": "Perm Expo",
+      "description": "The exhibition grounds on the edge of the city, also under chat control.",
+      "category": "city",
+      "location": {
+        "lat": 58.023,
+        "lng": 56.266
+      },
+      "city": "Perm",
+      "countryCode": "RU",
+      "timezone": "Asia/Yekaterinburg",
+      "tags": ["urals", "expo", "ptz"],
+      "featured": false,
+      "sourceChannel": "Nik CCTV",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "N7Qr7B43jig",
+      "title": "Solikamsk",
+      "description": "A salt-mining town in the northern Perm region, five hundred years old and rarely filmed.",
+      "category": "city",
+      "location": {
+        "lat": 59.63,
+        "lng": 56.77
+      },
+      "city": "Solikamsk",
+      "countryCode": "RU",
+      "timezone": "Asia/Yekaterinburg",
+      "tags": ["urals", "borovsk"],
+      "featured": false,
+      "sourceChannel": "Nik CCTV",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "sUrF-CEn3ag",
+      "title": "Lyubinsky Avenue, Omsk",
+      "description": "The nineteenth-century merchant street in the middle of Siberia.",
+      "category": "city",
+      "location": {
+        "lat": 54.9885,
+        "lng": 73.369
+      },
+      "city": "Omsk",
+      "countryCode": "RU",
+      "timezone": "Asia/Omsk",
+      "tags": ["siberia", "lyubinsky"],
+      "featured": false,
+      "sourceChannel": "smotriomsk",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "HTxGH7rcHQE",
+      "title": "The Lena at Lensk",
+      "description": "The river that freezes solid every winter and carries everything the town needs every summer.",
+      "category": "nature",
+      "location": {
+        "lat": 60.726,
+        "lng": 114.927
+      },
+      "city": "Lensk",
+      "countryCode": "RU",
+      "timezone": "Asia/Yakutsk",
+      "tags": ["lena", "yakutia", "siberia"],
+      "featured": false,
+      "sourceChannel": "LarryRos",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "4Uaxi5akPZA",
+      "title": "Lensk town centre",
+      "description": "A small town in Yakutia, two thousand kilometres from the nearest city of any size.",
+      "category": "city",
+      "location": {
+        "lat": 60.725,
+        "lng": 114.931
+      },
+      "city": "Lensk",
+      "countryCode": "RU",
+      "timezone": "Asia/Yakutsk",
+      "tags": ["yakutia", "siberia"],
+      "featured": false,
+      "sourceChannel": "LarryRos",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "qnUsHe_xslY",
+      "title": "Trinity Suburb, Minsk",
+      "description": "The rebuilt old quarter on the Svislach, the one piece of pre-war Minsk that reads as old.",
+      "category": "city",
+      "location": {
+        "lat": 53.9095,
+        "lng": 27.557
+      },
+      "city": "Minsk",
+      "countryCode": "BY",
+      "timezone": "Europe/Minsk",
+      "tags": ["trinity suburb", "svislach"],
+      "featured": false,
+      "sourceChannel": "Belarus. Points on the map",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "vFajdVd36jU",
+      "title": "Storozhovskaya Street, Minsk",
+      "description": "A residential street near the river, filmed for no reason other than that someone lives there.",
+      "category": "city",
+      "location": {
+        "lat": 53.913,
+        "lng": 27.562
+      },
+      "city": "Minsk",
+      "countryCode": "BY",
+      "timezone": "Europe/Minsk",
+      "tags": ["storozhovskaya"],
+      "featured": false,
+      "sourceChannel": "Belarus. Points on the map",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "TO7Us7GH0WI",
+      "title": "Grushevsky Square, Minsk",
+      "description": "A neighbourhood park in the south-west of the city.",
+      "category": "city",
+      "location": {
+        "lat": 53.883,
+        "lng": 27.517
+      },
+      "city": "Minsk",
+      "countryCode": "BY",
+      "timezone": "Europe/Minsk",
+      "tags": ["grushevka", "park"],
+      "featured": false,
+      "sourceChannel": "Belarus. Points on the map",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "zpf-ed1cAZs",
+      "title": "Dzerzhinsky Avenue, Minsk",
+      "description": "The avenue running out towards Grushevka metro, traffic and all.",
+      "category": "city",
+      "location": {
+        "lat": 53.879,
+        "lng": 27.529
+      },
+      "city": "Minsk",
+      "countryCode": "BY",
+      "timezone": "Europe/Minsk",
+      "tags": ["dzerzhinsky", "traffic"],
+      "featured": false,
+      "sourceChannel": "Belarus. Points on the map",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "GQRnp3GLx1U",
+      "title": "Ala-Too Square",
+      "description": "The central square of Bishkek, with the flagpole and the Kyrgyz Ala-Too range behind it. Operated by Saima Telecom, a Kyrgyz internet provider, rather than restreamed.",
+      "category": "city",
+      "location": {
+        "lat": 42.8759,
+        "lng": 74.6034
+      },
+      "city": "Bishkek",
+      "countryCode": "KG",
+      "timezone": "Asia/Bishkek",
+      "tags": ["ala-too", "square", "central asia"],
+      "featured": true,
+      "sourceChannel": "Saima Telecom",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "VhVgZi2lGv0",
+      "title": "Tallinn old town",
+      "description": "The medieval roofs and spires of the upper town, in 4K.",
+      "category": "city",
+      "location": {
+        "lat": 59.437,
+        "lng": 24.7536
+      },
+      "city": "Tallinn",
+      "countryCode": "EE",
+      "timezone": "Europe/Tallinn",
+      "tags": ["old town", "baltic"],
+      "featured": false,
+      "sourceChannel": "360PANO",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "ydYDqZQpim8",
+      "title": "Namib Desert waterhole",
+      "description": "A remote waterhole in the Gondwana Namib Park, beside the Namib-Naukluft. Oryx, springbok and jackals come and go; at night the frame belongs to whatever the desert sends.",
+      "category": "wildlife",
+      "location": {
+        "lat": -24.15,
+        "lng": 15.87
+      },
+      "city": null,
+      "countryCode": "NA",
+      "timezone": "Africa/Windhoek",
+      "tags": ["namib", "waterhole", "desert", "oryx"],
+      "featured": true,
+      "sourceChannel": "NamibiaCam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "EdDdTrahHjI",
+      "title": "Senyati waterhole",
+      "description": "A hide sunk to eye level with the water, on the elephant routes near Kasane.",
+      "category": "wildlife",
+      "location": {
+        "lat": -17.81,
+        "lng": 25.15
+      },
+      "city": "Kasane",
+      "countryCode": "BW",
+      "timezone": "Africa/Gaborone",
+      "tags": ["waterhole", "elephants", "chobe"],
+      "featured": false,
+      "sourceChannel": "Africam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "ZVRUiKmCs84",
+      "title": "Kalahari salt pan",
+      "description": "The Makgadikgadi pans, flat to the horizon in every direction.",
+      "category": "wildlife",
+      "location": {
+        "lat": -20.5,
+        "lng": 25.2
+      },
+      "city": null,
+      "countryCode": "BW",
+      "timezone": "Africa/Gaborone",
+      "tags": ["kalahari", "makgadikgadi", "pans"],
+      "featured": false,
+      "sourceChannel": "Africam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "jG0uYl5S44E",
+      "title": "Jack's Camp waterhole",
+      "description": "A Kalahari waterhole with elephants and lions on the far bank.",
+      "category": "wildlife",
+      "location": {
+        "lat": -20.5,
+        "lng": 25.15
+      },
+      "city": null,
+      "countryCode": "BW",
+      "timezone": "Africa/Gaborone",
+      "tags": ["kalahari", "waterhole"],
+      "featured": false,
+      "sourceChannel": "Africam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "vEEGzyCvL8Q",
+      "title": "The Basin hide, Selinda",
+      "description": "A sunken hide in the Selinda Reserve, where the camera sits below the animals.",
+      "category": "wildlife",
+      "location": {
+        "lat": -18.5,
+        "lng": 23.5
+      },
+      "city": null,
+      "countryCode": "BW",
+      "timezone": "Africa/Gaborone",
+      "tags": ["selinda", "hide", "okavango"],
+      "featured": false,
+      "sourceChannel": "Africam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "2EZavJUNdLI",
+      "title": "Twin Pan hide, Zarafa",
+      "description": "A second Selinda hide on a pair of pans that draw game through the dry season.",
+      "category": "wildlife",
+      "location": {
+        "lat": -18.55,
+        "lng": 23.45
+      },
+      "city": null,
+      "countryCode": "BW",
+      "timezone": "Africa/Gaborone",
+      "tags": ["selinda", "zarafa", "hide"],
+      "featured": false,
+      "sourceChannel": "Africam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "RZFMYVNhd4k",
+      "title": "Meno a Kwena, Boteti River",
+      "description": "Zebra crossing the Boteti during the second-largest zebra migration in Africa.",
+      "category": "wildlife",
+      "location": {
+        "lat": -20.5,
+        "lng": 24.6
+      },
+      "city": null,
+      "countryCode": "BW",
+      "timezone": "Africa/Gaborone",
+      "tags": ["boteti", "zebra", "migration"],
+      "featured": false,
+      "sourceChannel": "Africam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "54Y7xlLrkuo",
+      "title": "Moela, Boteti River",
+      "description": "The same river a few kilometres on, from a lodge on the west bank.",
+      "category": "wildlife",
+      "location": {
+        "lat": -20.4,
+        "lng": 24.5
+      },
+      "city": null,
+      "countryCode": "BW",
+      "timezone": "Africa/Gaborone",
+      "tags": ["boteti", "zebra"],
+      "featured": false,
+      "sourceChannel": "Africam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "mk02pEy3FdA",
+      "title": "Camelthorn waterhole",
+      "description": "Zebra and hippo at a Botswana waterhole named for the thorn trees around it.",
+      "category": "wildlife",
+      "location": {
+        "lat": -20.3,
+        "lng": 24.7
+      },
+      "city": null,
+      "countryCode": "BW",
+      "timezone": "Africa/Gaborone",
+      "tags": ["waterhole", "zebra", "hippo"],
+      "featured": false,
+      "sourceChannel": "Africam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "m4cAV-_7YpY",
+      "title": "Deteema Springs, Hwange",
+      "description": "A spring in the north of Hwange National Park, Zimbabwe.",
+      "category": "wildlife",
+      "location": {
+        "lat": -18.6,
+        "lng": 26.5
+      },
+      "city": null,
+      "countryCode": "ZW",
+      "timezone": "Africa/Harare",
+      "tags": ["hwange", "spring"],
+      "featured": false,
+      "sourceChannel": "Africam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "-rXriX4SiQk",
+      "title": "Linkwasha waterhole, Hwange",
+      "description": "The south-east corner of Hwange, on one of the park pumped waterholes.",
+      "category": "wildlife",
+      "location": {
+        "lat": -19.13,
+        "lng": 27.1
+      },
+      "city": null,
+      "countryCode": "ZW",
+      "timezone": "Africa/Harare",
+      "tags": ["hwange", "waterhole"],
+      "featured": false,
+      "sourceChannel": "Africam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "Njur5IV7icE",
+      "title": "Angama Mara",
+      "description": "The Maasai Mara from the escarpment above the Great Rift Valley.",
+      "category": "wildlife",
+      "location": {
+        "lat": -1.27,
+        "lng": 35.02
+      },
+      "city": null,
+      "countryCode": "KE",
+      "timezone": "Africa/Nairobi",
+      "tags": ["maasai mara", "rift valley"],
+      "featured": false,
+      "sourceChannel": "Africam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "ACc7IkdOF-Y",
+      "title": "Mara River, Fig Tree crossing",
+      "description": "One of the crossings the wildebeest use in the migration months, and where the crocodiles wait.",
+      "category": "wildlife",
+      "location": {
+        "lat": -1.41,
+        "lng": 35.05
+      },
+      "city": null,
+      "countryCode": "KE",
+      "timezone": "Africa/Nairobi",
+      "tags": ["mara river", "migration", "crocodile"],
+      "featured": false,
+      "sourceChannel": "Africam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "BaEFc79IMCA",
+      "title": "Mara River, main crossing",
+      "description": "The main crossing point downstream, watched around the clock.",
+      "category": "wildlife",
+      "location": {
+        "lat": -1.47,
+        "lng": 35.03
+      },
+      "city": null,
+      "countryCode": "KE",
+      "timezone": "Africa/Nairobi",
+      "tags": ["mara river", "migration"],
+      "featured": false,
+      "sourceChannel": "Africam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "jIh2FYqMOw0",
+      "title": "Mahali Mzuri",
+      "description": "Open Mara grassland from the Motorogi conservancy.",
+      "category": "wildlife",
+      "location": {
+        "lat": -1.22,
+        "lng": 35.13
+      },
+      "city": null,
+      "countryCode": "KE",
+      "timezone": "Africa/Nairobi",
+      "tags": ["maasai mara", "conservancy"],
+      "featured": false,
+      "sourceChannel": "Africam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "i12eS_2YV-s",
+      "title": "Angama Amboseli",
+      "description": "Amboseli scrub with Kilimanjaro on the skyline when the cloud lifts.",
+      "category": "wildlife",
+      "location": {
+        "lat": -2.65,
+        "lng": 37.25
+      },
+      "city": null,
+      "countryCode": "KE",
+      "timezone": "Africa/Nairobi",
+      "tags": ["amboseli", "kilimanjaro"],
+      "featured": false,
+      "sourceChannel": "Africam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "XyPU5-pNg5E",
+      "title": "Tortilis waterhole, Amboseli",
+      "description": "A waterhole under Kilimanjaro, on the Tanzanian border.",
+      "category": "wildlife",
+      "location": {
+        "lat": -2.73,
+        "lng": 37.22
+      },
+      "city": null,
+      "countryCode": "KE",
+      "timezone": "Africa/Nairobi",
+      "tags": ["amboseli", "kilimanjaro", "waterhole"],
+      "featured": false,
+      "sourceChannel": "Africam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "5dhmXmUD1ZE",
+      "title": "Ol Pejeta rhino camp",
+      "description": "The conservancy where the last two northern white rhino live under guard.",
+      "category": "wildlife",
+      "location": {
+        "lat": 0,
+        "lng": 36.9
+      },
+      "city": null,
+      "countryCode": "KE",
+      "timezone": "Africa/Nairobi",
+      "tags": ["ol pejeta", "rhino", "conservancy"],
+      "featured": false,
+      "sourceChannel": "Africam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "Xe9CPAdyAro",
+      "title": "Finch Hattons, Tsavo",
+      "description": "Spring-fed pools in Tsavo West, named after the hunter buried on the hill above.",
+      "category": "wildlife",
+      "location": {
+        "lat": -3,
+        "lng": 38
+      },
+      "city": null,
+      "countryCode": "KE",
+      "timezone": "Africa/Nairobi",
+      "tags": ["tsavo", "springs"],
+      "featured": false,
+      "sourceChannel": "Africam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "XsOU8JnEpNM",
+      "title": "ol Donyo, Chyulu Hills",
+      "description": "The Chyulu Hills between Amboseli and Tsavo, big-tusker country.",
+      "category": "wildlife",
+      "location": {
+        "lat": -2.6,
+        "lng": 37.8
+      },
+      "city": null,
+      "countryCode": "KE",
+      "timezone": "Africa/Nairobi",
+      "tags": ["chyulu", "elephants"],
+      "featured": false,
+      "sourceChannel": "Africam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "BmOLK7LTKbY",
+      "title": "The Serengeti",
+      "description": "The Tanzanian half of the same ecosystem as the Mara, and the other half of the migration.",
+      "category": "wildlife",
+      "location": {
+        "lat": -2.3333,
+        "lng": 34.8333
+      },
+      "city": null,
+      "countryCode": "TZ",
+      "timezone": "Africa/Dar_es_Salaam",
+      "tags": ["serengeti", "migration"],
+      "featured": false,
+      "sourceChannel": "Africam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "sQAhSkjRKGk",
+      "title": "Nkorho Bush Lodge, Sabi Sand",
+      "description": "A Sabi Sand waterhole, in the reserve that shares an unfenced border with Kruger.",
+      "category": "wildlife",
+      "location": {
+        "lat": -24.78,
+        "lng": 31.44
+      },
+      "city": null,
+      "countryCode": "ZA",
+      "timezone": "Africa/Johannesburg",
+      "tags": ["sabi sand", "big five"],
+      "featured": false,
+      "sourceChannel": "Africam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "zqc0Z2oWmo8",
+      "title": "Ulusaba, Sabi Sand",
+      "description": "A second Sabi Sand camera on a rocky outcrop above the bush.",
+      "category": "wildlife",
+      "location": {
+        "lat": -24.8,
+        "lng": 31.35
+      },
+      "city": null,
+      "countryCode": "ZA",
+      "timezone": "Africa/Johannesburg",
+      "tags": ["sabi sand", "big five"],
+      "featured": false,
+      "sourceChannel": "Africam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "C9hjksOtngo",
+      "title": "Roy's Dam, Sabi Sand",
+      "description": "A dam that concentrates everything in the reserve into one frame in the dry months.",
+      "category": "wildlife",
+      "location": {
+        "lat": -24.81,
+        "lng": 31.4
+      },
+      "city": null,
+      "countryCode": "ZA",
+      "timezone": "Africa/Johannesburg",
+      "tags": ["sabi sand", "dam"],
+      "featured": false,
+      "sourceChannel": "Africam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "QGvjAPzImR8",
+      "title": "Naledi, Greater Kruger",
+      "description": "A waterhole in the Balule reserve on the western edge of Kruger.",
+      "category": "wildlife",
+      "location": {
+        "lat": -24.25,
+        "lng": 31.25
+      },
+      "city": null,
+      "countryCode": "ZA",
+      "timezone": "Africa/Johannesburg",
+      "tags": ["kruger", "balule"],
+      "featured": false,
+      "sourceChannel": "Africam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "zh5QHh9prA0",
+      "title": "Simbavati, Klaserie",
+      "description": "The Klaserie riverbed, dry sand for most of the year.",
+      "category": "wildlife",
+      "location": {
+        "lat": -24.2,
+        "lng": 31.15
+      },
+      "city": null,
+      "countryCode": "ZA",
+      "timezone": "Africa/Johannesburg",
+      "tags": ["klaserie", "riverbed"],
+      "featured": false,
+      "sourceChannel": "Africam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "QDcUbYHgme4",
+      "title": "Skukuza, Kruger",
+      "description": "Beside the Sabie River at the main camp of Kruger National Park.",
+      "category": "wildlife",
+      "location": {
+        "lat": -24.995,
+        "lng": 31.59
+      },
+      "city": "Skukuza",
+      "countryCode": "ZA",
+      "timezone": "Africa/Johannesburg",
+      "tags": ["kruger", "sabie river"],
+      "featured": false,
+      "sourceChannel": "Africam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "gdrNUUf-cQw",
+      "title": "Tembe Elephant Park",
+      "description": "Sand-forest country on the Mozambique border, and the tallest elephants in Africa.",
+      "category": "wildlife",
+      "location": {
+        "lat": -26.9,
+        "lng": 32.4
+      },
+      "city": null,
+      "countryCode": "ZA",
+      "timezone": "Africa/Johannesburg",
+      "tags": ["tembe", "elephants"],
+      "featured": false,
+      "sourceChannel": "Africam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "iSeH45R-8R0",
+      "title": "Maho Beach approach",
+      "description": "The approach to Princess Juliana International, where aircraft cross the beach a few metres above the sand.",
+      "category": "airport",
+      "location": {
+        "lat": 18.0405,
+        "lng": -63.119
+      },
+      "city": "Maho",
+      "countryCode": "SX",
+      "timezone": "America/Lower_Princes",
+      "tags": ["maho", "princess juliana", "approach", "beach"],
+      "featured": true,
+      "sourceChannel": "SHOWME Caribbean",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "V7_orOtu-oo",
+      "title": "Harry Reid International",
+      "description": "Runways 26R and 26L at Las Vegas, with the Strip behind them.",
+      "category": "airport",
+      "location": {
+        "lat": 36.084,
+        "lng": -115.1537
+      },
+      "city": "Las Vegas",
+      "countryCode": "US",
+      "timezone": "America/Los_Angeles",
+      "tags": ["las", "runway", "spotting"],
+      "featured": false,
+      "sourceChannel": "Flightradar24",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "OUBslrCqREs",
+      "title": "LaGuardia",
+      "description": "New York's short-runway airport, hemmed in by Flushing Bay.",
+      "category": "airport",
+      "location": {
+        "lat": 40.7769,
+        "lng": -73.874
+      },
+      "city": "New York",
+      "countryCode": "US",
+      "timezone": "America/New_York",
+      "tags": ["lga", "spotting"],
+      "featured": false,
+      "sourceChannel": "Flightradar24",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "MH0_mPt-VXE",
+      "title": "Louis Armstrong International",
+      "description": "The New Orleans field, named after the trumpeter born a few miles away.",
+      "category": "airport",
+      "location": {
+        "lat": 29.993,
+        "lng": -90.258
+      },
+      "city": "New Orleans",
+      "countryCode": "US",
+      "timezone": "America/Chicago",
+      "tags": ["msy", "spotting"],
+      "featured": false,
+      "sourceChannel": "Flightradar24",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "fFl0qD108sk",
+      "title": "Reno-Tahoe International",
+      "description": "A high-desert airport with the Sierra Nevada on the skyline.",
+      "category": "airport",
+      "location": {
+        "lat": 39.499,
+        "lng": -119.768
+      },
+      "city": "Reno",
+      "countryCode": "US",
+      "timezone": "America/Los_Angeles",
+      "tags": ["rno", "spotting", "sierra"],
+      "featured": false,
+      "sourceChannel": "Flightradar24",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "NtbquzembC8",
+      "title": "Lanzarote Airport",
+      "description": "The Canary Islands field, on black volcanic ground.",
+      "category": "airport",
+      "location": {
+        "lat": 28.9455,
+        "lng": -13.6052
+      },
+      "city": "Arrecife",
+      "countryCode": "ES",
+      "timezone": "Atlantic/Canary",
+      "tags": ["ace", "canaries", "spotting"],
+      "featured": false,
+      "sourceChannel": "Flightradar24",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "_GUsXnlVJmo",
+      "title": "Miami International, runway 9/27",
+      "description": "The runway with tower radio patched into the stream.",
+      "category": "airport",
+      "location": {
+        "lat": 25.7959,
+        "lng": -80.287
+      },
+      "city": "Miami",
+      "countryCode": "US",
+      "timezone": "America/New_York",
+      "tags": ["mia", "atc", "spotting"],
+      "featured": false,
+      "sourceChannel": "PTZtv",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "EiUyBIcG4fQ",
+      "title": "Midway Airport",
+      "description": "Chicago's older field, wedged into the street grid on the south-west side.",
+      "category": "airport",
+      "location": {
+        "lat": 41.7868,
+        "lng": -87.7522
+      },
+      "city": "Chicago",
+      "countryCode": "US",
+      "timezone": "America/Chicago",
+      "tags": ["mdw", "spotting"],
+      "featured": false,
+      "sourceChannel": "EarthCam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "iHJbTrQSZys",
+      "title": "Key West harbour",
+      "description": "The end of the Florida Keys, with marine radio over the picture.",
+      "category": "port",
+      "location": {
+        "lat": 24.56,
+        "lng": -81.807
+      },
+      "city": "Key West",
+      "countryCode": "US",
+      "timezone": "America/New_York",
+      "tags": ["harbour", "keys", "marine radio"],
+      "featured": false,
+      "sourceChannel": "PTZtv",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "rxyNjFKwzJA",
+      "title": "Canada Place, Vancouver",
+      "description": "The cruise terminal under the white sails, with the North Shore mountains behind.",
+      "category": "port",
+      "location": {
+        "lat": 49.287,
+        "lng": -123.111
+      },
+      "city": "Vancouver",
+      "countryCode": "CA",
+      "timezone": "America/Vancouver",
+      "tags": ["cruise", "canada place"],
+      "featured": false,
+      "sourceChannel": "Vancouver City Views",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "pXx3YQVSUGg",
+      "title": "Fort Lauderdale Beach",
+      "description": "The beach road and the Atlantic beyond it.",
+      "category": "beach",
+      "location": {
+        "lat": 26.122,
+        "lng": -80.103
+      },
+      "city": "Fort Lauderdale",
+      "countryCode": "US",
+      "timezone": "America/New_York",
+      "tags": ["atlantic", "beach"],
+      "featured": false,
+      "sourceChannel": "PTZtv",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "tAdTOOsrZBQ",
+      "title": "Anglins Pier",
+      "description": "A fishing pier north of Fort Lauderdale, out over the surf.",
+      "category": "beach",
+      "location": {
+        "lat": 26.192,
+        "lng": -80.096
+      },
+      "city": "Lauderdale-By-The-Sea",
+      "countryCode": "US",
+      "timezone": "America/New_York",
+      "tags": ["pier", "atlantic"],
+      "featured": false,
+      "sourceChannel": "EarthCam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "NLhxcyzXQxM",
+      "title": "Siesta Key Beach",
+      "description": "Quartz sand on the Gulf coast, white enough to stay cool underfoot.",
+      "category": "beach",
+      "location": {
+        "lat": 27.267,
+        "lng": -82.549
+      },
+      "city": "Siesta Key",
+      "countryCode": "US",
+      "timezone": "America/New_York",
+      "tags": ["gulf", "beach"],
+      "featured": false,
+      "sourceChannel": "SIESTA BEACH LIVE",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "rxBBRLWF0mM",
+      "title": "Clearwater Beach",
+      "description": "The Gulf at Clearwater, from a restaurant deck on the sand.",
+      "category": "beach",
+      "location": {
+        "lat": 27.977,
+        "lng": -82.827
+      },
+      "city": "Clearwater",
+      "countryCode": "US",
+      "timezone": "America/New_York",
+      "tags": ["gulf", "beach"],
+      "featured": false,
+      "sourceChannel": "Frenchy's",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "4LTSTw4jnZc",
+      "title": "Sanibel Island",
+      "description": "A shelling beach on a barrier island off Fort Myers.",
+      "category": "beach",
+      "location": {
+        "lat": 26.44,
+        "lng": -82.11
+      },
+      "city": "Sanibel",
+      "countryCode": "US",
+      "timezone": "America/New_York",
+      "tags": ["gulf", "barrier island"],
+      "featured": false,
+      "sourceChannel": "EarthCam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "cmkAbDUEoyA",
+      "title": "Hollywood Beach Broadwalk",
+      "description": "Four kilometres of promenade between the hotels and the Atlantic.",
+      "category": "beach",
+      "location": {
+        "lat": 26.012,
+        "lng": -80.116
+      },
+      "city": "Hollywood",
+      "countryCode": "US",
+      "timezone": "America/New_York",
+      "tags": ["broadwalk", "atlantic"],
+      "featured": false,
+      "sourceChannel": "City of Hollywood",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "OBgCrw-IyhE",
+      "title": "Seaside Heights",
+      "description": "A New Jersey boardwalk town, quiet nine months of the year.",
+      "category": "beach",
+      "location": {
+        "lat": 39.944,
+        "lng": -74.071
+      },
+      "city": "Seaside Heights",
+      "countryCode": "US",
+      "timezone": "America/New_York",
+      "tags": ["boardwalk", "jersey shore"],
+      "featured": false,
+      "sourceChannel": "EarthCam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "cK71xhMRtds",
+      "title": "Wildwood boardwalk",
+      "description": "The widest beach on the Jersey shore, and the piers along it.",
+      "category": "beach",
+      "location": {
+        "lat": 38.989,
+        "lng": -74.815
+      },
+      "city": "Wildwood",
+      "countryCode": "US",
+      "timezone": "America/New_York",
+      "tags": ["boardwalk", "jersey shore"],
+      "featured": false,
+      "sourceChannel": "EarthCam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "2wqpy036z24",
+      "title": "Beach Bar, Cruz Bay",
+      "description": "Cruz Bay on St John, in the US Virgin Islands.",
+      "category": "beach",
+      "location": {
+        "lat": 18.331,
+        "lng": -64.794
+      },
+      "city": "Cruz Bay",
+      "countryCode": "VI",
+      "timezone": "America/St_Thomas",
+      "tags": ["caribbean", "cruz bay"],
+      "featured": false,
+      "sourceChannel": "St. John USVI",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "Thtj8Ht7Z_c",
+      "title": "Seychelles shoreline",
+      "description": "Granite boulders and open Indian Ocean, with the surf on the audio track.",
+      "category": "beach",
+      "location": {
+        "lat": -4.68,
+        "lng": 55.48
+      },
+      "city": null,
+      "countryCode": "SC",
+      "timezone": "Indian/Mahe",
+      "tags": ["indian ocean", "granite"],
+      "featured": false,
+      "sourceChannel": "Luxury Island",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "MW3fisTCXRQ",
+      "title": "Koh Phangan",
+      "description": "A Gulf of Thailand beach in stereo sound.",
+      "category": "beach",
+      "location": {
+        "lat": 9.75,
+        "lng": 100.03
+      },
+      "city": "Koh Phangan",
+      "countryCode": "TH",
+      "timezone": "Asia/Bangkok",
+      "tags": ["gulf of thailand", "beach"],
+      "featured": false,
+      "sourceChannel": "Teleport.camera",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "FyFAqPHBKiQ",
+      "title": "Fisherman's Village, Koh Samui",
+      "description": "The old Chinese shophouse street at Bophut, on the north shore of Samui.",
+      "category": "beach",
+      "location": {
+        "lat": 9.558,
+        "lng": 100.059
+      },
+      "city": "Koh Samui",
+      "countryCode": "TH",
+      "timezone": "Asia/Bangkok",
+      "tags": ["bophut", "samui"],
+      "featured": false,
+      "sourceChannel": "The Real Samui Webcam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "Fw9hgttWzIg",
+      "title": "Lamai Beach, Koh Samui",
+      "description": "The east-coast beach, which gets the sunrise the other side misses.",
+      "category": "beach",
+      "location": {
+        "lat": 9.47,
+        "lng": 100.045
+      },
+      "city": "Koh Samui",
+      "countryCode": "TH",
+      "timezone": "Asia/Bangkok",
+      "tags": ["lamai", "samui"],
+      "featured": false,
+      "sourceChannel": "The Real Samui Webcam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "EO_1LWqsCNE",
+      "title": "Venice Beach",
+      "description": "The boardwalk at Venice, Los Angeles, from a hotel balcony above it.",
+      "category": "beach",
+      "location": {
+        "lat": 33.985,
+        "lng": -118.4695
+      },
+      "city": "Los Angeles",
+      "countryCode": "US",
+      "timezone": "America/Los_Angeles",
+      "tags": ["venice", "boardwalk", "pacific"],
+      "featured": false,
+      "sourceChannel": "Teleport.camera",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "fTh5ssC1z-c",
+      "title": "Tamariu",
+      "description": "A small cove on the Costa Brava, in Catalonia.",
+      "category": "beach",
+      "location": {
+        "lat": 41.92,
+        "lng": 3.2
+      },
+      "city": "Tamariu",
+      "countryCode": "ES",
+      "timezone": "Europe/Madrid",
+      "tags": ["costa brava", "cove"],
+      "featured": false,
+      "sourceChannel": "EarthCam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "jtdyLykT_XY",
+      "title": "Mallorca",
+      "description": "The Balearic coast, from a hotel above the water.",
+      "category": "beach",
+      "location": {
+        "lat": 39.57,
+        "lng": 2.65
+      },
+      "city": null,
+      "countryCode": "ES",
+      "timezone": "Europe/Madrid",
+      "tags": ["balearics", "mediterranean"],
+      "featured": false,
+      "sourceChannel": "EarthCam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "JQ_jwk_7OVE",
+      "title": "Times Square",
+      "description": "The north end of the square, lit brightly enough that the camera never needs night mode.",
+      "category": "city",
+      "location": {
+        "lat": 40.758,
+        "lng": -73.9855
+      },
+      "city": "New York",
+      "countryCode": "US",
+      "timezone": "America/New_York",
+      "tags": ["times square", "manhattan"],
+      "featured": false,
+      "sourceChannel": "EarthCam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "5C9oM7C2Q9k",
+      "title": "World Trade Center",
+      "description": "Lower Manhattan from above the rebuilt site.",
+      "category": "city",
+      "location": {
+        "lat": 40.7127,
+        "lng": -74.0134
+      },
+      "city": "New York",
+      "countryCode": "US",
+      "timezone": "America/New_York",
+      "tags": ["manhattan", "skyline"],
+      "featured": false,
+      "sourceChannel": "EarthCam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "ZYQlLQHz2Mg",
+      "title": "9/11 Memorial",
+      "description": "The two voids where the towers stood, water falling into them all day.",
+      "category": "other",
+      "location": {
+        "lat": 40.7115,
+        "lng": -74.0134
+      },
+      "city": "New York",
+      "countryCode": "US",
+      "timezone": "America/New_York",
+      "tags": ["memorial", "manhattan"],
+      "featured": false,
+      "sourceChannel": "EarthCam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "tErYxn2UM5Y",
+      "title": "Brooklyn Bridge",
+      "description": "The 1883 bridge and the traffic across it.",
+      "category": "city",
+      "location": {
+        "lat": 40.7061,
+        "lng": -73.9969
+      },
+      "city": "New York",
+      "countryCode": "US",
+      "timezone": "America/New_York",
+      "tags": ["brooklyn bridge", "east river"],
+      "featured": false,
+      "sourceChannel": "EarthCam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "9mMnqO1UuIU",
+      "title": "Philadelphia skyline",
+      "description": "The centre of the city from across the roofs.",
+      "category": "city",
+      "location": {
+        "lat": 39.9526,
+        "lng": -75.1652
+      },
+      "city": "Philadelphia",
+      "countryCode": "US",
+      "timezone": "America/New_York",
+      "tags": ["skyline"],
+      "featured": false,
+      "sourceChannel": "EarthCam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "F1EQEDL4ddU",
+      "title": "Liberty Bell",
+      "description": "The bell in its glass pavilion, with Independence Hall behind.",
+      "category": "other",
+      "location": {
+        "lat": 39.9496,
+        "lng": -75.1503
+      },
+      "city": "Philadelphia",
+      "countryCode": "US",
+      "timezone": "America/New_York",
+      "tags": ["liberty bell", "independence hall"],
+      "featured": false,
+      "sourceChannel": "EarthCam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "oDCAAfOSqvA",
+      "title": "Washington Monument",
+      "description": "The obelisk on the Mall, from the far end of the Reflecting Pool.",
+      "category": "other",
+      "location": {
+        "lat": 38.8895,
+        "lng": -77.0353
+      },
+      "city": "Washington",
+      "countryCode": "US",
+      "timezone": "America/New_York",
+      "tags": ["mall", "monument"],
+      "featured": false,
+      "sourceChannel": "EarthCam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "5p_KGD4fJZs",
+      "title": "The White House",
+      "description": "The north front from Lafayette Square, across Pennsylvania Avenue.",
+      "category": "other",
+      "location": {
+        "lat": 38.8977,
+        "lng": -77.0365
+      },
+      "city": "Washington",
+      "countryCode": "US",
+      "timezone": "America/New_York",
+      "tags": ["white house", "pennsylvania avenue"],
+      "featured": false,
+      "sourceChannel": "earthTV",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "qbsgcchN2-Y",
+      "title": "Tower of Voices",
+      "description": "Forty wind chimes on a Pennsylvania hillside, one for each person on Flight 93.",
+      "category": "other",
+      "location": {
+        "lat": 40.0563,
+        "lng": -78.9053
+      },
+      "city": "Shanksville",
+      "countryCode": "US",
+      "timezone": "America/New_York",
+      "tags": ["memorial", "flight 93"],
+      "featured": false,
+      "sourceChannel": "EarthCam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "QhFYcPBmkcI",
+      "title": "Bourbon Street",
+      "description": "The French Quarter at street level, busiest long after midnight.",
+      "category": "city",
+      "location": {
+        "lat": 29.959,
+        "lng": -90.065
+      },
+      "city": "New Orleans",
+      "countryCode": "US",
+      "timezone": "America/Chicago",
+      "tags": ["french quarter", "bourbon street"],
+      "featured": false,
+      "sourceChannel": "EarthCam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "6lFBKxt8kIo",
+      "title": "French Quarter balcony",
+      "description": "The same quarter from a wrought-iron balcony above it.",
+      "category": "city",
+      "location": {
+        "lat": 29.9584,
+        "lng": -90.0644
+      },
+      "city": "New Orleans",
+      "countryCode": "US",
+      "timezone": "America/Chicago",
+      "tags": ["french quarter", "balcony"],
+      "featured": false,
+      "sourceChannel": "EarthCam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "MT5Og9gOKuM",
+      "title": "Milwaukee",
+      "description": "The lakefront city on the western shore of Lake Michigan.",
+      "category": "city",
+      "location": {
+        "lat": 43.0389,
+        "lng": -87.9065
+      },
+      "city": "Milwaukee",
+      "countryCode": "US",
+      "timezone": "America/Chicago",
+      "tags": ["lake michigan", "skyline"],
+      "featured": false,
+      "sourceChannel": "EarthCam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "qsrevo5Vdkw",
+      "title": "Council Bluffs",
+      "description": "A Missouri River town on the Iowa side, opposite Omaha.",
+      "category": "city",
+      "location": {
+        "lat": 41.262,
+        "lng": -95.861
+      },
+      "city": "Council Bluffs",
+      "countryCode": "US",
+      "timezone": "America/Chicago",
+      "tags": ["missouri river", "iowa"],
+      "featured": false,
+      "sourceChannel": "EarthCam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "Ez6xC43MMTQ",
+      "title": "Madison, Indiana",
+      "description": "An Ohio River town whose whole centre is a historic district.",
+      "category": "city",
+      "location": {
+        "lat": 38.736,
+        "lng": -85.38
+      },
+      "city": "Madison",
+      "countryCode": "US",
+      "timezone": "America/Indiana/Indianapolis",
+      "tags": ["ohio river", "indiana"],
+      "featured": false,
+      "sourceChannel": "EarthCam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "kLoFxVhRWtQ",
+      "title": "Roswell",
+      "description": "Main Street in the New Mexico town that has made a living out of one night in 1947.",
+      "category": "city",
+      "location": {
+        "lat": 33.3943,
+        "lng": -104.523
+      },
+      "city": "Roswell",
+      "countryCode": "US",
+      "timezone": "America/Denver",
+      "tags": ["new mexico", "main street"],
+      "featured": false,
+      "sourceChannel": "EarthCam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "XoANQufSSXY",
+      "title": "Ruidoso",
+      "description": "A village in the Sacramento Mountains at two kilometres above sea level.",
+      "category": "mountain",
+      "location": {
+        "lat": 33.332,
+        "lng": -105.67
+      },
+      "city": "Ruidoso",
+      "countryCode": "US",
+      "timezone": "America/Denver",
+      "tags": ["sacramento mountains", "new mexico"],
+      "featured": false,
+      "sourceChannel": "EarthCam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "VWDi2Po3ZsQ",
+      "title": "World's Largest Buffalo",
+      "description": "A twenty-six-tonne concrete bison standing over Interstate 94 in North Dakota.",
+      "category": "other",
+      "location": {
+        "lat": 46.89,
+        "lng": -98.72
+      },
+      "city": "Jamestown",
+      "countryCode": "US",
+      "timezone": "America/Chicago",
+      "tags": ["roadside", "bison", "north dakota"],
+      "featured": false,
+      "sourceChannel": "EarthCam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "mU0nL6JvwbM",
+      "title": "Santa Clara Valley",
+      "description": "South of San Jose, looking down the valley from Morgan Hill.",
+      "category": "city",
+      "location": {
+        "lat": 37.1305,
+        "lng": -121.6544
+      },
+      "city": "Morgan Hill",
+      "countryCode": "US",
+      "timezone": "America/Los_Angeles",
+      "tags": ["santa clara", "valley"],
+      "featured": false,
+      "sourceChannel": "PTZtv",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "BSWhGNXxT9A",
+      "title": "San Francisco Bay",
+      "description": "The bay towards the Golden Gate, from the waterfront.",
+      "category": "city",
+      "location": {
+        "lat": 37.808,
+        "lng": -122.409
+      },
+      "city": "San Francisco",
+      "countryCode": "US",
+      "timezone": "America/Los_Angeles",
+      "tags": ["golden gate", "bay"],
+      "featured": false,
+      "sourceChannel": "Teleport.camera",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "zMCea32gpmg",
+      "title": "Abbey Road crossing",
+      "description": "The zebra crossing on the Beatles sleeve, and everyone who stops to re-enact it.",
+      "category": "city",
+      "location": {
+        "lat": 51.532,
+        "lng": -0.1777
+      },
+      "city": "London",
+      "countryCode": "GB",
+      "timezone": "Europe/London",
+      "tags": ["abbey road", "beatles"],
+      "featured": false,
+      "sourceChannel": "EarthCam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "3nyPER2kzqk",
+      "title": "Dublin",
+      "description": "The centre of the Irish capital from above the street.",
+      "category": "city",
+      "location": {
+        "lat": 53.3498,
+        "lng": -6.2603
+      },
+      "city": "Dublin",
+      "countryCode": "IE",
+      "timezone": "Europe/Dublin",
+      "tags": ["ireland", "city centre"],
+      "featured": false,
+      "sourceChannel": "EarthCam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "Cp4RRAEgpeU",
+      "title": "Santa Claus Village",
+      "description": "The Arctic Circle line runs through the yard, marked on the ground in lights.",
+      "category": "other",
+      "location": {
+        "lat": 66.5436,
+        "lng": 25.8475
+      },
+      "city": "Rovaniemi",
+      "countryCode": "FI",
+      "timezone": "Europe/Helsinki",
+      "tags": ["arctic circle", "lapland"],
+      "featured": false,
+      "sourceChannel": "City of Rovaniemi",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "5uZa3-RMFos",
+      "title": "Sydney Harbour",
+      "description": "The bridge and the opera house from the north shore.",
+      "category": "city",
+      "location": {
+        "lat": -33.856,
+        "lng": 151.215
+      },
+      "city": "Sydney",
+      "countryCode": "AU",
+      "timezone": "Australia/Sydney",
+      "tags": ["harbour bridge", "opera house"],
+      "featured": false,
+      "sourceChannel": "WebcamSydney",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "_k-5U7IeK8g",
+      "title": "Tokyo Bay",
+      "description": "The bay and the towers behind it, in 4K.",
+      "category": "city",
+      "location": {
+        "lat": 35.63,
+        "lng": 139.78
+      },
+      "city": "Tokyo",
+      "countryCode": "JP",
+      "timezone": "Asia/Tokyo",
+      "tags": ["tokyo bay", "skyline"],
+      "featured": false,
+      "sourceChannel": "Tokyo Views LIVE",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "DjdUEyjx8GM",
+      "title": "Kabukicho",
+      "description": "The Shinjuku entertainment district, awake all night.",
+      "category": "city",
+      "location": {
+        "lat": 35.695,
+        "lng": 139.702
+      },
+      "city": "Tokyo",
+      "countryCode": "JP",
+      "timezone": "Asia/Tokyo",
+      "tags": ["shinjuku", "kabukicho"],
+      "featured": false,
+      "sourceChannel": "Kabukicho Live Channel",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "vk5BHoDxXf0",
+      "title": "The Han River",
+      "description": "Seoul from Yeouido, with the bridges over the Han lit at night.",
+      "category": "city",
+      "location": {
+        "lat": 37.529,
+        "lng": 126.933
+      },
+      "city": "Seoul",
+      "countryCode": "KR",
+      "timezone": "Asia/Seoul",
+      "tags": ["han river", "yeouido"],
+      "featured": false,
+      "sourceChannel": "RIVERWORKER",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "z8TKwI9Ntho",
+      "title": "Agdao, Davao City",
+      "description": "A tyre shop and a sari-sari store on a Mindanao street corner.",
+      "category": "city",
+      "location": {
+        "lat": 7.09,
+        "lng": 125.62
+      },
+      "city": "Davao City",
+      "countryCode": "PH",
+      "timezone": "Asia/Manila",
+      "tags": ["mindanao", "street corner"],
+      "featured": false,
+      "sourceChannel": "JazBaz Philippines",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "RObfJZTh8l4",
+      "title": "Bandar Puteri, Puchong",
+      "description": "A Kuala Lumpur suburb from a security-company camera on a tower block.",
+      "category": "city",
+      "location": {
+        "lat": 3.0206,
+        "lng": 101.618
+      },
+      "city": "Puchong",
+      "countryCode": "MY",
+      "timezone": "Asia/Kuala_Lumpur",
+      "tags": ["kuala lumpur", "suburb"],
+      "featured": false,
+      "sourceChannel": "LH Technologies & Solutions",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "ccTVAhJU5lg",
+      "title": "Kilpisjärvi, north view",
+      "description": "Finnish Lapland pointed at the aurora, three hundred kilometres inside the Arctic Circle.",
+      "category": "nature",
+      "location": {
+        "lat": 69.047,
+        "lng": 20.793
+      },
+      "city": "Kilpisjärvi",
+      "countryCode": "FI",
+      "timezone": "Europe/Helsinki",
+      "tags": ["aurora", "lapland", "arctic"],
+      "featured": false,
+      "sourceChannel": "Starlapland",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "6tq8S2pp8PQ",
+      "title": "Pigeon River",
+      "description": "Whitewater coming out of the Great Smoky Mountains in Tennessee.",
+      "category": "nature",
+      "location": {
+        "lat": 35.8,
+        "lng": -83.15
+      },
+      "city": "Hartford",
+      "countryCode": "US",
+      "timezone": "America/New_York",
+      "tags": ["smokies", "whitewater"],
+      "featured": false,
+      "sourceChannel": "EarthCam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "XIe9vQkAd7Q",
+      "title": "Spirit Lake",
+      "description": "A glacial lake in northern Iowa, frozen for a third of the year.",
+      "category": "nature",
+      "location": {
+        "lat": 43.422,
+        "lng": -95.102
+      },
+      "city": "Spirit Lake",
+      "countryCode": "US",
+      "timezone": "America/Chicago",
+      "tags": ["iowa", "lake"],
+      "featured": false,
+      "sourceChannel": "EarthCam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "IU_-Pl9O5jQ",
+      "title": "Snowman Cam",
+      "description": "A northern Michigan feeding station: deer, turkeys and whatever else turns up.",
+      "category": "wildlife",
+      "location": {
+        "lat": 45.027,
+        "lng": -84.675
+      },
+      "city": "Gaylord",
+      "countryCode": "US",
+      "timezone": "America/Detroit",
+      "tags": ["michigan", "deer", "feeder"],
+      "featured": false,
+      "sourceChannel": "EarthCam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "AIwsO8sB0LM",
+      "title": "Giraffe barn, Greenville Zoo",
+      "description": "The indoor half of the giraffe enclosure, which is where they spend cold nights.",
+      "category": "wildlife",
+      "location": {
+        "lat": 34.852,
+        "lng": -82.39
+      },
+      "city": "Greenville",
+      "countryCode": "US",
+      "timezone": "America/New_York",
+      "tags": ["zoo", "giraffe"],
+      "featured": false,
+      "sourceChannel": "EarthCam",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "KSxc-N67TU4",
+      "title": "National Aquarium",
+      "description": "A tank in Baltimore, from the visitor side of the glass.",
+      "category": "wildlife",
+      "location": {
+        "lat": 39.2852,
+        "lng": -76.6083
+      },
+      "city": "Baltimore",
+      "countryCode": "US",
+      "timezone": "America/New_York",
+      "tags": ["aquarium", "inner harbor"],
       "featured": false,
       "sourceChannel": "EarthCam",
       "verifiedAt": "2026-09-10"
