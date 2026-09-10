@@ -7,7 +7,7 @@
 
   <!-- Everything below floats over the map. The map is the page; the
        interface is a thin layer on top of it that gets out of the way. -->
-  <div class="hud">
+  <div class="hud" #hud>
     <div class="bar" [class.bar--open]="panelOpen()">
       <span class="bar__mark" aria-hidden="true"></span>
       <span class="bar__name">Manara</span>
@@ -30,7 +30,7 @@
       <button
         type="button"
         class="bar__toggle"
-        [class.bar__toggle--active]="panelOpen()"
+        [class.bar__toggle--active]="panelOpen() || hasFilters()"
         [attr.aria-expanded]="panelOpen()"
         aria-controls="results-panel"
         (click)="onPanelToggled()"

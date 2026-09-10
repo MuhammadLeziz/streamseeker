@@ -15,6 +15,23 @@ import type { IStream } from '@manara/shared';
 
 /** Opening view: Middle East and Central Asia in frame. */
 const INITIAL_CENTER: L.LatLngExpression = [30, 45];
+
+/**
+ * The edge of the world, as far as this map is concerned.
+ *
+ * Two separate things produce the black field you get by panning far enough.
+ * Past 85 degrees Web Mercator has no tiles at all, and past the antimeridian
+ * there is no world to draw; that is the real edge. But the last few degrees
+ * before it are permanent ice, which OpenStreetMap draws white and the dark
+ * basemap inverts to near-black, so a view up there looks just as broken as one
+ * off the edge.
+ *
+ * 80 degrees is where the second problem stops: Svalbard and the inhabited
+ * coast of Greenland are still inside it, and nothing above it has a camera on
+ * it. Longitude is clamped to a single world, which also ends the infinite
+ * sideways scroll the old worldCopyJump option allowed.
+ */
+const WORLD_BOUNDS = L.latLngBounds([-80, -180], [80, 180]);
 const INITIAL_ZOOM = 3;
 const FOCUS_ZOOM = 12;
 
@@ -77,8 +94,10 @@ export class StreamMapComponent implements AfterViewInit, OnDestroy {
     this.map = L.map(this.host().nativeElement, {
       center: INITIAL_CENTER,
       zoom: INITIAL_ZOOM,
-      minZoom: 2,
-      worldCopyJump: true,
+      maxBounds: WORLD_BOUNDS,
+      // 1.0 makes the edge solid. Anything lower lets the view be dragged past
+      // it and rubber-banded back, which still shows the black field.
+      maxBoundsViscosity: 1,
       // Both default controls are re-added below in the corner the floating
       // interface leaves free. Leaflet offers no option for their position, so
       // they have to be switched off and constructed by hand.
@@ -100,11 +119,16 @@ export class StreamMapComponent implements AfterViewInit, OnDestroy {
       maxZoom: 19,
     }).addTo(this.map);
 
-    // Leaflet caches the container size at construction, before the grid has
-    // laid out, which leaves the map a few pixels tall. The observer fixes
-    // both that and ordinary window resizing.
-    this.resizeObserver = new ResizeObserver(() => this.map?.invalidateSize());
+    // Leaflet caches the container size at construction, before the layout has
+    // run, which leaves the map a few pixels tall. The observer fixes both that
+    // and ordinary window resizing.
+    this.resizeObserver = new ResizeObserver(() => {
+      this.map?.invalidateSize();
+      this.applyMinZoom();
+    });
     this.resizeObserver.observe(this.host().nativeElement);
+
+    this.applyMinZoom();
 
     this.markerLayer = L.layerGroup().addTo(this.map);
     this.renderMarkers(this.streams());
@@ -113,6 +137,29 @@ export class StreamMapComponent implements AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.resizeObserver?.disconnect();
     this.map?.remove();
+  }
+
+  /**
+   * Holds the smallest zoom at which the world still covers the viewport.
+   *
+   * A fixed `minZoom` cannot do this: at zoom 2 the world is 1024px across, so
+   * a wide monitor zoomed all the way out sees black to the left and right of
+   * it. `getBoundsZoom` with `inside` set answers the opposite question to the
+   * usual one — not "what zoom fits the world in the view" but "what zoom fits
+   * the view inside the world" — which is exactly the floor we need, and it has
+   * to be recomputed whenever the window changes shape.
+   */
+  private applyMinZoom(): void {
+    if (!this.map) {
+      return;
+    }
+
+    const minZoom = this.map.getBoundsZoom(WORLD_BOUNDS, true);
+    this.map.setMinZoom(minZoom);
+
+    if (this.map.getZoom() < minZoom) {
+      this.map.setZoom(minZoom);
+    }
   }
 
   private renderMarkers(streams: readonly IStream[]): void {

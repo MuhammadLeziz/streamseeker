@@ -39,11 +39,15 @@ import { StreamPlayerComponent } from './stream-player';
   styleUrl: './map-page.scss',
   // Bound on the document rather than on the layout element: Escape has to
   // work while the pointer is on the map, and the map is not focusable.
-  host: { '(document:keydown.escape)': 'onEscape()' },
+  host: {
+    '(document:keydown.escape)': 'onEscape()',
+    '(document:pointerdown)': 'onDocumentPointerDown($event)',
+  },
 })
 export class MapPageComponent implements OnInit {
   private readonly store = inject(Store);
   private readonly searchInput = viewChild<ElementRef<HTMLInputElement>>('searchInput');
+  private readonly hud = viewChild<ElementRef<HTMLElement>>('hud');
 
   readonly streams = this.store.selectSignal(selectVisibleStreams);
   readonly categories = this.store.selectSignal(selectAvailableCategories);
@@ -59,14 +63,16 @@ export class MapPageComponent implements OnInit {
   });
 
   /**
-   * Held open by the reader rather than by the filters: focusing the search
-   * field or pressing the toggle sets it, and it survives an empty query so
-   * that clearing the text does not yank the list away mid-typing.
+   * Whether the results panel is showing.
+   *
+   * This is interface state and nothing else. It used to be derived partly from
+   * the filters, which forced closing the panel to clear them — otherwise a
+   * panel dismissed with a category still on reopened by itself. Now that a
+   * click on the map closes it, that coupling would throw away a search every
+   * time the reader looked at the map, so the two are separate: the panel hides
+   * and the filters stay, with the toggle lit to say so.
    */
-  private readonly panelHeldOpen = signal(false);
-
-  /** The panel is a result, not a container: it appears when there is one. */
-  readonly panelOpen = computed(() => this.panelHeldOpen() || this.hasFilters());
+  readonly panelOpen = signal(false);
 
   ngOnInit(): void {
     this.store.dispatch(StreamsPageActions.opened());
@@ -74,12 +80,12 @@ export class MapPageComponent implements OnInit {
 
   onSearch(event: Event): void {
     const search = (event.target as HTMLInputElement).value;
-    this.panelHeldOpen.set(true);
+    this.panelOpen.set(true);
     this.store.dispatch(StreamsPageActions.searchChanged({ search }));
   }
 
   onSearchFocus(): void {
-    this.panelHeldOpen.set(true);
+    this.panelOpen.set(true);
   }
 
   onPanelToggled(): void {
@@ -87,8 +93,34 @@ export class MapPageComponent implements OnInit {
       this.closePanel();
       return;
     }
-    this.panelHeldOpen.set(true);
+    this.panelOpen.set(true);
     this.searchInput()?.nativeElement.focus();
+  }
+
+  /**
+   * A press on the map puts the panel away, which is what reaching past it to
+   * the map means.
+   *
+   * The player is exempt: it is a window of its own, and dragging it or closing
+   * it is not a request to dismiss anything else. `pointerdown` rather than
+   * `click` so the panel is gone before the map starts panning under it.
+   */
+  onDocumentPointerDown(event: PointerEvent): void {
+    if (!this.panelOpen()) {
+      return;
+    }
+
+    const target = event.target;
+    const hud = this.hud()?.nativeElement;
+    if (!(target instanceof Node) || hud?.contains(target)) {
+      return;
+    }
+
+    if (target instanceof Element && target.closest('app-stream-player')) {
+      return;
+    }
+
+    this.closePanel();
   }
 
   /**
@@ -119,18 +151,12 @@ export class MapPageComponent implements OnInit {
 
   /** Clears the query but leaves the panel up: the reader is still looking. */
   onFiltersReset(): void {
-    this.panelHeldOpen.set(true);
+    this.panelOpen.set(true);
     this.store.dispatch(StreamsPageActions.filtersReset());
   }
 
-  /**
-   * Closing has to clear the filters too. `panelOpen` is derived partly from
-   * them, so a panel dismissed while a category was still on would reopen on
-   * the next change detection and read as a broken toggle.
-   */
   private closePanel(): void {
-    this.panelHeldOpen.set(false);
+    this.panelOpen.set(false);
     this.searchInput()?.nativeElement.blur();
-    this.store.dispatch(StreamsPageActions.filtersReset());
   }
 }
