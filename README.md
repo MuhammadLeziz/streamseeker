@@ -1,8 +1,12 @@
-# World Watcher
+# Manara
 
 A map of live streams from around the world, with the densest coverage over the
 Muslim world and the CIS. Inspired by [worldwatcher.live](https://worldwatcher.live/),
 not a copy of it.
+
+_Manara_ (منارة) is a lighthouse, and a minaret: from the root ن-و-ر, light. It
+stands high and looks out at the world, which is what this does. The name says
+nothing about which part of the world, so the map stays global.
 
 ## What is different here
 
