@@ -9,11 +9,9 @@
   ],
   "scripts": {
     "start:web": "npm run start -w @world-watcher/web",
-    "start:api": "npm run start:dev -w @world-watcher/api",
-    "build": "npm run build -w @world-watcher/shared && npm run build -w @world-watcher/web && npm run build -w @world-watcher/api",
+    "build": "npm run build:shared && npm run build:web",
     "build:shared": "npm run build -w @world-watcher/shared",
     "build:web": "npm run build -w @world-watcher/web",
-    "build:api": "npm run build -w @world-watcher/api",
     "test": "npm run test --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
     "lint:fix": "npm run lint:fix --workspaces --if-present",
