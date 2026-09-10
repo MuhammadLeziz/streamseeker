@@ -1,0 +1,61 @@
+{
+  "$comment": "Каталог трансляций. Заполняется вручную и проверяется на живость кроном бэкенда. Координаты — самой точки съёмки, а не центра города.",
+  "streams": [
+    {
+      "youtubeVideoId": "ZzobaiyOBxg",
+      "title": "Масджид аль-Харам — прямой эфир",
+      "description": "Круглосуточная трансляция из Заповедной мечети в Мекке. Официальный канал саудовского телевидения «Коран».",
+      "category": "mosque",
+      "location": { "lat": 21.4225, "lng": 39.8262 },
+      "city": "Мекка",
+      "countryCode": "SA",
+      "timezone": "Asia/Riyadh",
+      "tags": ["кааба", "харам", "хадж", "умра"],
+      "featured": true,
+      "sourceChannel": "القرآن الکریم",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "PLkCnLrKN8Q",
+      "title": "Мекка — резервный эфир",
+      "description": "Второй постоянный эфир из аль-Харама. Держим как запасной: если основной поток упадёт, точка на карте останется живой.",
+      "category": "mosque",
+      "location": { "lat": 21.4225, "lng": 39.8262 },
+      "city": "Мекка",
+      "countryCode": "SA",
+      "timezone": "Asia/Riyadh",
+      "tags": ["кааба", "харам", "резерв"],
+      "featured": false,
+      "sourceChannel": "قناة القران الكريم",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "Rs7St51oDDc",
+      "title": "Масджид ан-Набави — прямой эфир",
+      "description": "Круглосуточная трансляция из Мечети Пророка в Медине. Официальный канал саудовского телевидения «Сунна».",
+      "category": "mosque",
+      "location": { "lat": 24.4672, "lng": 39.6111 },
+      "city": "Медина",
+      "countryCode": "SA",
+      "timezone": "Asia/Riyadh",
+      "tags": ["ан-набави", "медина", "зиярат"],
+      "featured": true,
+      "sourceChannel": "قناة السنة النبوية",
+      "verifiedAt": "2026-09-10"
+    },
+    {
+      "youtubeVideoId": "77akujLn4k8",
+      "title": "Западная стена, Иерусалим",
+      "description": "Камера EarthCam на площади у Западной стены. Аль-Акса в кадр не попадает — постоянного эфира из самой мечети на YouTube нет.",
+      "category": "ziyarat",
+      "location": { "lat": 31.7767, "lng": 35.2345 },
+      "city": "Иерусалим",
+      "countryCode": "PS",
+      "timezone": "Asia/Jerusalem",
+      "tags": ["иерусалим", "старый город"],
+      "featured": false,
+      "sourceChannel": "EarthCam",
+      "verifiedAt": "2026-09-10"
+    }
+  ]
+}
