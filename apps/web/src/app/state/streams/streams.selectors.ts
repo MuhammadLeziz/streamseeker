@@ -36,16 +36,26 @@ function matchesFilters(stream: IStream, filters: IStreamFilters): boolean {
   }
 
   const query = filters.search.trim().toLowerCase();
-  if (query.length > 0) {
-    const haystack = [stream.title, stream.city ?? '', stream.countryCode, ...stream.tags]
-      .join(' ')
-      .toLowerCase();
-    if (!haystack.includes(query)) {
-      return false;
-    }
+  if (query.length > 0 && !startsWithQuery(stream, query)) {
+    return false;
   }
 
   return true;
+}
+
+/**
+ * Search matches a prefix, not a substring anywhere in the record.
+ *
+ * Each searchable field is tested on its own with startsWith rather than
+ * joining everything into one string, so typing "me" finds Mecca and Medina
+ * instead of every stream whose description happens to contain those letters.
+ *
+ * The trade-off is deliberate: "haram" alone will not surface
+ * "Masjid al-Haram", because the title does not start with it.
+ */
+function startsWithQuery(stream: IStream, query: string): boolean {
+  const fields = [stream.title, stream.city ?? '', stream.countryCode, ...stream.tags];
+  return fields.some((field) => field.toLowerCase().startsWith(query));
 }
 
 export const selectVisibleStreams = createSelector(

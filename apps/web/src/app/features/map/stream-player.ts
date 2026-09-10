@@ -1,16 +1,4 @@
-import { DOCUMENT } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  computed,
-  effect,
-  inject,
-  input,
-  output,
-  signal,
-  viewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, output } from '@angular/core';
 import { DomSanitizer, type SafeResourceUrl } from '@angular/platform-browser';
 import type { IStream } from '@world-watcher/shared';
 
@@ -37,22 +25,12 @@ import type { IStream } from '@world-watcher/shared';
 
         <div class="player__frame">
           <iframe
-            #frame
             [src]="embedUrl()"
             title="Live stream"
             allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
             allowfullscreen
             referrerpolicy="strict-origin-when-cross-origin"
           ></iframe>
-
-          <button
-            type="button"
-            class="sound"
-            [attr.aria-pressed]="!muted()"
-            (click)="toggleSound()"
-          >
-            {{ muted() ? 'Unmute' : 'Mute' }}
-          </button>
         </div>
 
         @if (current.description) {
@@ -150,31 +128,6 @@ import type { IStream } from '@world-watcher/shared';
         border: 0;
       }
 
-      .sound {
-        position: absolute;
-        inset-block-end: 0.5rem;
-        inset-inline-start: 0.5rem;
-        padding: 0.25rem 0.55rem;
-        border: 1px solid color-mix(in srgb, white 20%, transparent);
-        border-radius: var(--radius);
-        background: color-mix(in srgb, black 65%, transparent);
-        backdrop-filter: blur(6px);
-        color: #fff;
-        font: inherit;
-        font-size: 0.6875rem;
-        cursor: pointer;
-        transition: background var(--transition);
-      }
-
-      .sound:hover {
-        background: color-mix(in srgb, black 80%, transparent);
-      }
-
-      .sound[aria-pressed='true'] {
-        border-color: var(--accent);
-        color: var(--accent);
-      }
-
       .player__description {
         margin: 0;
         font-size: 0.75rem;
@@ -189,58 +142,27 @@ export class StreamPlayerComponent {
   readonly closed = output<void>();
 
   private readonly sanitizer = inject(DomSanitizer);
-  private readonly document = inject(DOCUMENT);
-  private readonly frame = viewChild<ElementRef<HTMLIFrameElement>>('frame');
 
   /**
-   * The player always starts muted, otherwise the browser blocks autoplay
-   * outright. Sound used to be handled by YouTube's own button, which drifted
-   * out of sync: the icon read as unmuted while the stream stayed silent until
-   * you toggled it twice. State now lives here and is applied through the
-   * IFrame API, so the player and our control always agree.
+   * The embed deliberately carries no `autoplay` and no `mute`.
+   *
+   * Browsers refuse to autoplay with sound, so autoplay only works when the
+   * player starts muted. That muted start is exactly what broke sound: the
+   * player's own speaker icon and its real audio state drifted apart, and it
+   * took two clicks to get audio. Driving mute from our side through the
+   * IFrame API did not settle it either.
+   *
+   * So the player now loads paused and hands sound entirely to YouTube's own
+   * controls. The stream costs one click to start, and audio behaves the way
+   * it does on YouTube itself, with nothing to fall out of sync.
    */
-  readonly muted = signal(true);
-
   readonly embedUrl = computed<SafeResourceUrl | null>(() => {
     const current = this.stream();
     if (!current) {
       return null;
     }
 
-    const origin = this.document.defaultView?.location.origin ?? '';
-    const params = new URLSearchParams({
-      autoplay: '1',
-      mute: '1',
-      playsinline: '1',
-      rel: '0',
-      // enablejsapi opens the postMessage channel we use to unmute.
-      enablejsapi: '1',
-      origin,
-    });
-
-    const url = `https://www.youtube-nocookie.com/embed/${current.youtubeVideoId}?${params}`;
+    const url = `https://www.youtube-nocookie.com/embed/${current.youtubeVideoId}?playsinline=1&rel=0`;
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   });
-
-  constructor() {
-    // A new stream means a new iframe, muted again.
-    effect(() => {
-      this.stream();
-      this.muted.set(true);
-    });
-  }
-
-  toggleSound(): void {
-    const win = this.frame()?.nativeElement.contentWindow;
-    if (!win) {
-      return;
-    }
-
-    const next = !this.muted();
-    win.postMessage(
-      JSON.stringify({ event: 'command', func: next ? 'mute' : 'unMute', args: [] }),
-      'https://www.youtube-nocookie.com',
-    );
-    this.muted.set(next);
-  }
 }
