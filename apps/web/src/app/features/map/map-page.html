@@ -1,34 +1,54 @@
 <div class="layout">
   <aside class="sidebar">
-    <header class="sidebar__head">
-      <h1 class="sidebar__title">World Watcher</h1>
-      <p class="sidebar__subtitle">Прямые трансляции со всего мира</p>
+    <header class="brand">
+      <span class="brand__mark" aria-hidden="true"></span>
+      <span class="brand__name">World Watcher</span>
+      <span class="brand__count">{{ visibleCount() }}</span>
     </header>
 
-    <section class="sidebar__section">
-      <div class="sidebar__section-head">
-        <h2 class="sidebar__heading">Категории</h2>
-        @if (filters().categories.length > 0) {
-          <button type="button" class="reset" (click)="onFiltersReset()">Сбросить</button>
-        }
-      </div>
-
-      <app-category-filter
-        [options]="categories()"
-        [selected]="filters().categories"
-        (categoryToggled)="onCategoryToggled($event)"
+    <div class="search">
+      <input
+        type="search"
+        class="search__input"
+        placeholder="Search a place, city or tag"
+        aria-label="Search streams"
+        [value]="filters().search"
+        (input)="onSearch($event)"
       />
-    </section>
+    </div>
 
-    <section class="sidebar__section">
-      @if (loading()) {
-        <p class="status">Загружаем каталог…</p>
-      } @else if (error()) {
-        <p class="status status--error">{{ error() }}</p>
-      } @else {
-        <p class="status">Показано трансляций: {{ visibleCount() }}</p>
-      }
-    </section>
+    <div class="scroll">
+      <section class="block">
+        <div class="block__head">
+          <h2 class="block__title">Categories</h2>
+          @if (hasFilters()) {
+            <button type="button" class="link" (click)="onFiltersReset()">Clear</button>
+          }
+        </div>
+        <app-category-filter
+          [options]="categories()"
+          [selected]="filters().categories"
+          (categoryToggled)="onCategoryToggled($event)"
+        />
+      </section>
+
+      <section class="block">
+        <div class="block__head">
+          <h2 class="block__title">Streams</h2>
+        </div>
+
+        @if (error(); as message) {
+          <p class="error">{{ message }}</p>
+        } @else {
+          <app-stream-list
+            [streams]="streams()"
+            [selectedId]="selected()?.id ?? null"
+            [loading]="loading()"
+            (streamSelected)="onStreamSelected($event)"
+          />
+        }
+      </section>
+    </div>
 
     <app-stream-player [stream]="selected()" (closed)="onPlayerClosed()" />
   </aside>
