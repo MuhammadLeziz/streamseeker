@@ -1,0 +1,77 @@
+# Pipeline for StreamSeeker.
+#
+# Two things happen here: the branch is checked, and main is published to
+# GitLab Pages. There is no deploy step for the API — it needs a PostgreSQL
+# instance that does not exist yet, and the front end does not depend on it:
+# the catalogue ships as a static file, so the site is complete without a
+# backend behind it.
+
+stages:
+  - build
+  - verify
+  - deploy
+
+default:
+  image: node:26-alpine
+  # node_modules is not cached across jobs by GitLab on its own; the key is
+  # the lockfile, so the cache is thrown away exactly when it goes stale.
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - .npm/
+  before_script:
+    - npm ci --cache .npm --prefer-offline
+
+# packages/shared compiles to dist/ and both the app and the Node scripts
+# import it from there, so nothing else can run until it exists.
+shared:
+  stage: build
+  script:
+    - npm run build:shared
+  artifacts:
+    paths:
+      - packages/shared/dist/
+    expire_in: 1 hour
+
+lint:
+  stage: verify
+  needs: [shared]
+  script:
+    - npm run lint
+
+test:
+  stage: verify
+  needs: [shared]
+  script:
+    - npm run test
+
+# The catalogue check talks to YouTube, so it is allowed to fail: a runner
+# without egress, or a rate limit, must not turn the pipeline red over
+# something that says nothing about the commit. A real failure — a camera
+# deleted or with embedding revoked — shows up as a warning to act on.
+catalogue:
+  stage: verify
+  needs: [shared]
+  script:
+    - npm run check:catalogue
+  allow_failure: true
+
+# GitLab Pages serves a project at https://<namespace>.gitlab.io/<project>/,
+# so the bundle has to be built for that subpath rather than for the root.
+# CI_PROJECT_NAME rather than a literal: the project is due to be renamed and
+# the base href should follow it without an edit here.
+pages:
+  stage: deploy
+  needs: [shared]
+  script:
+    - npm run build:catalogue
+    - npm run build -w @streamseeker/web -- --base-href "/$CI_PROJECT_NAME/"
+    - mkdir -p public
+    - cp -r apps/web/dist/StreamSeeker/browser/. public/
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
