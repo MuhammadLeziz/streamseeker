@@ -1,0 +1,95 @@
+:host {
+  display: block;
+  block-size: 100%;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 22rem 1fr;
+  block-size: 100dvh;
+  background: #0d0f11;
+  color: #e8eaed;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  overflow-y: auto;
+  border-inline-end: 1px solid #2a2f36;
+  background: #111417;
+}
+
+.sidebar__head {
+  padding: 1.25rem 1rem 0;
+}
+
+.sidebar__title {
+  margin: 0;
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+}
+
+.sidebar__subtitle {
+  margin: 0.25rem 0 0;
+  font-size: 0.8125rem;
+  color: #9aa4ae;
+}
+
+.sidebar__section {
+  padding-inline: 1rem;
+}
+
+.sidebar__section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-block-end: 0.6rem;
+}
+
+.sidebar__heading {
+  margin: 0;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9aa4ae;
+}
+
+.reset {
+  border: 0;
+  background: transparent;
+  color: #6aa9ff;
+  font: inherit;
+  font-size: 0.75rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.reset:hover {
+  text-decoration: underline;
+}
+
+.status {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: #9aa4ae;
+}
+
+.status--error {
+  color: #ff8a80;
+}
+
+.map-area {
+  min-inline-size: 0;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+
+  .map-area {
+    min-block-size: 60dvh;
+  }
+}

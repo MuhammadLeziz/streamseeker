@@ -3,3 +3,25 @@
 @use './styles/variables';
 @use './styles/globals';
 @use './styles/utils';
+/* Маркеры карты. Лежат в глобальных стилях, потому что Leaflet вставляет
+   их через divIcon в собственный DOM, куда инкапсуляция компонента не достаёт. */
+.stream-pin__dot {
+  display: block;
+  inline-size: 14px;
+  block-size: 14px;
+  border-radius: 50%;
+  background: var(--pin-color, #7a7a7a);
+  border: 2px solid rgb(255 255 255 / 85%);
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 35%);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.stream-pin__dot:hover {
+  transform: scale(1.35);
+}
+
+.leaflet-container {
+  font: inherit;
+  background: #1a1d21;
+}

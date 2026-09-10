@@ -8,14 +8,15 @@
     "apps/*"
   ],
   "scripts": {
-    "start:web": "npm run start -w @world-watcher/web",
-    "build": "npm run build:shared && npm run build:web",
+    "start:web": "npm run build:catalogue && npm run start -w @world-watcher/web",
+    "build": "npm run build:shared && npm run build:catalogue && npm run build:web",
     "build:shared": "npm run build -w @world-watcher/shared",
     "build:web": "npm run build -w @world-watcher/web",
     "test": "npm run test --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
     "lint:fix": "npm run lint:fix --workspaces --if-present",
-    "prettier": "prettier --write ."
+    "prettier": "prettier --write .",
+    "build:catalogue": "node scripts/build-catalogue.mjs"
   },
   "devDependencies": {
     "prettier": "^3.9.6"

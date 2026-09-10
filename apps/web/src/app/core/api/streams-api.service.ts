@@ -18,7 +18,7 @@ export class StreamsApiService {
    */
   loadAll(): Observable<IStream[]> {
     return this.http
-      .get<IStreamListResponse>(`${environment.apiUrl}/streams`)
+      .get<IStreamListResponse>(environment.catalogueUrl)
       .pipe(map((response) => [...response.items]));
   }
 }
