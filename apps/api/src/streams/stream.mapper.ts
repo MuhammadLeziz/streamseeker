@@ -1,7 +1,7 @@
 import { $Enums } from '@prisma/client';
 import type { Prisma } from '@prisma/client';
-import { STREAM_CATEGORIES, STREAM_STATUSES, regionsOfCountry } from '@manara/shared';
-import type { IStream } from '@manara/shared';
+import { STREAM_CATEGORIES, STREAM_STATUSES, regionsOfCountry } from '@streamseeker/shared';
+import type { IStream } from '@streamseeker/shared';
 
 /** A stream row with its tags joined, which is the only shape we ever read. */
 export type StreamRow = Prisma.StreamGetPayload<{ include: { tags: true } }>;

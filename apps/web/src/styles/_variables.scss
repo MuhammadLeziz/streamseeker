@@ -57,10 +57,19 @@
   /* The floating search bar and the results panel share one width. */
   --hud-width: #{rem(680)};
   --hud-inset: #{rem(16)};
-  --player-width: #{rem(380)};
+  /* The player opens centred over the map, so it is sized to be watched rather
+     than glanced at. Its floor matters too: under about 400px YouTube collapses
+     the embed into a cramped layout where the controls climb onto the picture. */
+  --player-width: #{rem(880)};
   /* Leaflet gives its own controls z-index 800, so anything of ours meant to
-     float over them has to clear that. */
+     float over them has to clear that.
+     Above it the order is: the player window; then the search bar and its
+     results panel, which have to stay reachable over an open window now that
+     the window opens in the middle of the map; and the player again once it
+     is maximised, at which point there is nothing underneath worth reaching. */
   --z-float: 900;
+  --z-hud: 950;
+  --z-cover: 1000;
 
   --transition: 160ms cubic-bezier(0.32, 0.72, 0, 1);
 }

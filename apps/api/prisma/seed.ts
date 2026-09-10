@@ -14,8 +14,8 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 import { PrismaClient } from '@prisma/client';
-import { isStreamCategory } from '@manara/shared';
-import type { StreamCategory } from '@manara/shared';
+import { isStreamCategory } from '@streamseeker/shared';
+import type { StreamCategory } from '@streamseeker/shared';
 
 interface ISeedStream {
   youtubeVideoId: string;

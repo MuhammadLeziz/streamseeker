@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
-import { CATEGORY_META } from '@manara/shared';
-import type { IStream } from '@manara/shared';
+import { CATEGORY_META } from '@streamseeker/shared';
+import type { IStream } from '@streamseeker/shared';
 
 import { categoryLabel } from './category-filter';
 
@@ -39,7 +39,11 @@ import { categoryLabel } from './category-filter';
               <span class="row__body">
                 <span class="row__title">{{ stream.title }}</span>
                 <span class="row__meta">
-                  {{ stream.city }}<span class="row__sep">/</span>{{ category(stream) }}
+                  <!-- Not every camera stands in a city. -->
+                  @if (stream.city; as city) {
+                    {{ city }}<span class="row__sep">/</span>
+                  }
+                  {{ category(stream) }}
                 </span>
               </span>
             </button>

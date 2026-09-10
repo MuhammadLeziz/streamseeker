@@ -1,6 +1,6 @@
 import { createSelector } from '@ngrx/store';
-import { CATEGORY_META, STREAM_CATEGORIES } from '@manara/shared';
-import type { IStream, StreamCategory } from '@manara/shared';
+import { CATEGORY_META, STREAM_CATEGORIES } from '@streamseeker/shared';
+import type { IStream, StreamCategory } from '@streamseeker/shared';
 
 import { streamsAdapter, streamsFeature, type IStreamFilters } from './streams.reducer';
 
@@ -11,6 +11,22 @@ export const { selectStreamsState, selectStatus, selectError, selectFilters, sel
 
 export const selectAllStreams = createSelector(selectStreamsState, selectAll);
 export const selectStreamEntities = createSelector(selectStreamsState, selectEntities);
+
+/**
+ * The catalogue minus the streams known to be gone.
+ *
+ * `unavailable` means the video was deleted, made private, or had embedding
+ * revoked — the check behind `npm run check:catalogue` is what sets it. That is
+ * not a filter anyone would want to switch off: a pin leading to a black
+ * rectangle is the exact failure this map exists to avoid, and letting dead
+ * points accumulate is what happens to the site it is answering.
+ *
+ * Everything the reader sees is counted and filtered from here. `selectAllStreams`
+ * stays the raw catalogue, for anything that has to know what was actually loaded.
+ */
+export const selectAvailableStreams = createSelector(selectAllStreams, (streams) =>
+  streams.filter((stream) => stream.status !== 'unavailable'),
+);
 
 export const selectIsLoading = createSelector(selectStatus, (status) => status === 'loading');
 
@@ -59,7 +75,7 @@ function startsWithQuery(stream: IStream, query: string): boolean {
 }
 
 export const selectVisibleStreams = createSelector(
-  selectAllStreams,
+  selectAvailableStreams,
   selectFilters,
   (streams, filters) => streams.filter((stream) => matchesFilters(stream, filters)),
 );
@@ -67,15 +83,16 @@ export const selectVisibleStreams = createSelector(
 export const selectVisibleCount = createSelector(selectVisibleStreams, (streams) => streams.length);
 
 export const selectLiveCount = createSelector(
-  selectAllStreams,
+  selectAvailableStreams,
   (streams) => streams.filter((stream) => stream.status === 'live').length,
 );
 
 /**
- * Per-category counts, taken over the whole catalogue rather than the filtered
- * list, so the number beside a checkbox does not react to its own selection.
+ * Per-category counts, taken over the available catalogue rather than the
+ * filtered list, so the number beside a checkbox does not react to its own
+ * selection.
  */
-export const selectCategoryCounts = createSelector(selectAllStreams, (streams) => {
+export const selectCategoryCounts = createSelector(selectAvailableStreams, (streams) => {
   const counts = Object.fromEntries(STREAM_CATEGORIES.map((category) => [category, 0])) as Record<
     StreamCategory,
     number

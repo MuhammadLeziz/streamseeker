@@ -1,5 +1,5 @@
 {
-  "name": "manara",
+  "name": "streamseeker",
   "version": "0.0.0",
   "private": true,
   "packageManager": "npm@12.0.1",
@@ -8,22 +8,24 @@
     "apps/*"
   ],
   "scripts": {
-    "start:web": "npm run build:catalogue && npm run start -w @manara/web",
+    "start:web": "npm run build:catalogue && npm run start -w @streamseeker/web",
     "build": "npm run build:shared && npm run build:catalogue && npm run build:web && npm run build:api",
-    "build:shared": "npm run build -w @manara/shared",
-    "build:web": "npm run build -w @manara/web",
+    "build:shared": "npm run build -w @streamseeker/shared",
+    "build:web": "npm run build -w @streamseeker/web",
     "test": "npm run test --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
     "lint:fix": "npm run lint:fix --workspaces --if-present",
     "prettier": "prettier --write .",
     "build:catalogue": "node scripts/build-catalogue.mjs",
-    "start:api": "npm run start -w @manara/api",
-    "build:api": "npm run build -w @manara/api",
+    "check:catalogue": "node --use-env-proxy scripts/build-catalogue.mjs --check",
+    "start:api": "npm run start -w @streamseeker/api",
+    "build:api": "npm run build -w @streamseeker/api",
     "db:up": "docker compose up -d db",
     "db:down": "docker compose down",
-    "db:generate": "npm run db:generate -w @manara/api",
-    "db:migrate": "npm run db:migrate -w @manara/api",
-    "db:seed": "npm run db:seed -w @manara/api"
+    "db:generate": "npm run db:generate -w @streamseeker/api",
+    "db:migrate": "npm run db:migrate -w @streamseeker/api",
+    "db:seed": "npm run db:seed -w @streamseeker/api",
+    "serve:dist": "node scripts/serve-dist.mjs"
   },
   "devDependencies": {
     "prettier": "^3.9.6"

@@ -1,6 +1,10 @@
-import type { IStream } from '@manara/shared';
+import type { IStream } from '@streamseeker/shared';
 
-import { selectVisibleStreams } from './streams.selectors';
+import {
+  selectAvailableStreams,
+  selectCategoryCounts,
+  selectVisibleStreams,
+} from './streams.selectors';
 import { streamsAdapter, type IStreamsState } from './streams.reducer';
 
 function makeStream(overrides: Partial<IStream> & Pick<IStream, 'id' | 'title'>): IStream {
@@ -77,5 +81,31 @@ describe('stream search', () => {
 
   it('does not match in the middle of a field', () => {
     expect(visibleTitles('haram')).toEqual([]);
+  });
+});
+
+describe('unavailable streams', () => {
+  const gone = makeStream({
+    id: 'c',
+    title: 'Deleted camera',
+    city: 'Nowhere',
+    category: 'city',
+    status: 'unavailable',
+  });
+
+  it('drops them from the catalogue the reader sees', () => {
+    expect(selectAvailableStreams.projector([haram, nabawi, gone]).map((s) => s.title)).toEqual([
+      'Masjid al-Haram',
+      'Masjid an-Nabawi',
+    ]);
+  });
+
+  it('leaves them out of the category counts, so no empty category survives', () => {
+    const counts = selectCategoryCounts.projector(
+      selectAvailableStreams.projector([haram, nabawi, gone]),
+    );
+
+    expect(counts.mosque).toBe(2);
+    expect(counts.city).toBe(0);
   });
 });

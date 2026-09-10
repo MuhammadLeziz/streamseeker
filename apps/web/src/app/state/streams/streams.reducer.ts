@@ -1,6 +1,6 @@
 import { createEntityAdapter, EntityState } from '@ngrx/entity';
 import { createFeature, createReducer, on } from '@ngrx/store';
-import type { Region, IStream, StreamCategory } from '@manara/shared';
+import type { Region, IStream, StreamCategory } from '@streamseeker/shared';
 
 import { StreamsApiActions, StreamsPageActions } from './streams.actions';
 

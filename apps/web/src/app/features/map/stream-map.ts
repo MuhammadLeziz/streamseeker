@@ -10,8 +10,33 @@ import {
   viewChild,
 } from '@angular/core';
 import * as L from 'leaflet';
-import { CATEGORY_META } from '@manara/shared';
-import type { IStream } from '@manara/shared';
+// Side-effect import: the plugin exports nothing and augments Leaflet in place.
+import 'leaflet.markercluster';
+import { CATEGORY_META } from '@streamseeker/shared';
+import type { IStream } from '@streamseeker/shared';
+
+/**
+ * The one Leaflet this file builds anything with.
+ *
+ * leaflet.markercluster never imports Leaflet. It reads a bare global `L` at
+ * module-evaluation time and writes `markerClusterGroup` onto it. What
+ * `import * as L` gives this module is a different object: the optimised build
+ * hands each importer its own interop namespace, so the augmentation is not on
+ * it and `L.markerClusterGroup` is undefined. The dev server bundles the two
+ * as one object and hides this completely — the bug exists in production only,
+ * and the first anyone sees of it is a map with no markers on it.
+ *
+ * Mixing the two is its own hazard: a layer built from one reference and a map
+ * built from another are not guaranteed to be the same Leaflet. So resolve one
+ * reference here — the augmented global when the plugin reached it, this
+ * module's namespace otherwise — and build the map, the tiles, the icons and
+ * the clusters from that single object. `L` stays in use for types, which have
+ * no runtime identity to get wrong.
+ */
+const leaflet: typeof L =
+  typeof (globalThis as { L?: typeof L }).L?.markerClusterGroup === 'function'
+    ? (globalThis as unknown as { L: typeof L }).L
+    : L;
 
 /** Opening view: Middle East and Central Asia in frame. */
 const INITIAL_CENTER: L.LatLngExpression = [30, 45];
@@ -31,13 +56,27 @@ const INITIAL_CENTER: L.LatLngExpression = [30, 45];
  * it. Longitude is clamped to a single world, which also ends the infinite
  * sideways scroll the old worldCopyJump option allowed.
  */
-const WORLD_BOUNDS = L.latLngBounds([-80, -180], [80, 180]);
+const WORLD_BOUNDS = leaflet.latLngBounds([-80, -180], [80, 180]);
 const INITIAL_ZOOM = 3;
 const FOCUS_ZOOM = 12;
 
 /**
- * The search bar floats at the top and the player in the bottom-right corner,
- * which leaves the bottom-left as the one corner nothing else claims.
+ * Where clustering stops.
+ *
+ * Below this the catalogue is unreadable in the places that matter most: ten
+ * cameras in the centre of Saint Petersburg and eight around the Botswana pans
+ * land on the same few pixels, and the densest parts of the map — the parts
+ * this catalogue exists for — turn into one blob. Above it every pin stands on
+ * its own, which is what someone who has zoomed that far in is asking for.
+ *
+ * It sits below FOCUS_ZOOM on purpose: selecting a stream flies to it, and the
+ * pin has to be a pin by the time the flight lands, not a cluster of one.
+ */
+const CLUSTER_UNTIL_ZOOM = 11;
+
+/**
+ * The search bar floats at the top and the player opens over the middle, which
+ * leaves the bottom-left as the one corner nothing else claims.
  */
 const CONTROL_CORNER = 'bottomleft' as const;
 
@@ -68,16 +107,16 @@ export class StreamMapComponent implements AfterViewInit, OnDestroy {
   private readonly host = viewChild.required<ElementRef<HTMLElement>>('host');
 
   private map?: L.Map;
-  private markerLayer?: L.LayerGroup;
+  private markerLayer?: L.MarkerClusterGroup;
   private readonly markers = new Map<string, L.Marker>();
   private resizeObserver?: ResizeObserver;
 
   constructor() {
-    // Markers are only drawn once the map exists. Before ngAfterViewInit
-    // there is no container and Leaflet throws.
+    // Markers are only drawn once the cluster layer exists, which is not
+    // until ngAfterViewInit has a container to give Leaflet.
     effect(() => {
       const streams = this.streams();
-      if (this.map) {
+      if (this.markerLayer) {
         this.renderMarkers(streams);
       }
     });
@@ -91,7 +130,7 @@ export class StreamMapComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    this.map = L.map(this.host().nativeElement, {
+    this.map = leaflet.map(this.host().nativeElement, {
       center: INITIAL_CENTER,
       zoom: INITIAL_ZOOM,
       maxBounds: WORLD_BOUNDS,
@@ -107,17 +146,19 @@ export class StreamMapComponent implements AfterViewInit, OnDestroy {
 
     // Order matters: within one corner Leaflet stacks controls in the order
     // they are added, and the credit belongs at the very bottom.
-    L.control
+    leaflet.control
       .attribution({ position: CONTROL_CORNER, prefix: false })
       .addAttribution('&copy; OpenStreetMap contributors')
       .addTo(this.map);
-    L.control.zoom({ position: CONTROL_CORNER }).addTo(this.map);
+    leaflet.control.zoom({ position: CONTROL_CORNER }).addTo(this.map);
 
     // Plain OSM tiles: free and keyless. CARTO and Stadia have both closed
     // their basemaps behind an API key.
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-    }).addTo(this.map);
+    leaflet
+      .tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+      })
+      .addTo(this.map);
 
     // Leaflet caches the container size at construction, before the layout has
     // run, which leaves the map a few pixels tall. The observer fixes both that
@@ -130,7 +171,30 @@ export class StreamMapComponent implements AfterViewInit, OnDestroy {
 
     this.applyMinZoom();
 
-    this.markerLayer = L.layerGroup().addTo(this.map);
+    this.initClusterLayer(this.map);
+  }
+
+  private initClusterLayer(map: L.Map): void {
+    this.markerLayer = leaflet
+      .markerClusterGroup({
+        disableClusteringAtZoom: CLUSTER_UNTIL_ZOOM,
+        maxClusterRadius: 48,
+        showCoverageOnHover: false,
+        // The spider only appears for markers that share a coordinate exactly,
+        // which here means the three feeds of the Grand Mosque.
+        spiderfyOnMaxZoom: true,
+        iconCreateFunction: (cluster) => {
+          const count = cluster.getChildCount();
+          const size = count < 10 ? 30 : count < 50 ? 36 : 42;
+          return leaflet.divIcon({
+            className: 'stream-cluster',
+            html: `<span class="stream-cluster__body">${count}</span>`,
+            iconSize: [size, size],
+          });
+        },
+      })
+      .addTo(map);
+
     this.renderMarkers(this.streams());
   }
 
@@ -163,14 +227,18 @@ export class StreamMapComponent implements AfterViewInit, OnDestroy {
   }
 
   private renderMarkers(streams: readonly IStream[]): void {
-    this.markerLayer?.clearLayers();
+    if (!this.markerLayer) {
+      return;
+    }
+
+    this.markerLayer.clearLayers();
     this.markers.clear();
 
     for (const stream of streams) {
       const color = CATEGORY_META[stream.category].color;
-      const marker = L.marker([stream.location.lat, stream.location.lng], {
+      const marker = leaflet.marker([stream.location.lat, stream.location.lng], {
         title: stream.title,
-        icon: L.divIcon({
+        icon: leaflet.divIcon({
           className: 'stream-pin',
           html: `<span class="stream-pin__dot" style="--pin-color:${color}"></span>`,
           iconSize: [18, 18],
@@ -179,7 +247,7 @@ export class StreamMapComponent implements AfterViewInit, OnDestroy {
       });
 
       marker.on('click', () => this.streamSelected.emit(stream.id));
-      marker.addTo(this.markerLayer!);
+      marker.addTo(this.markerLayer);
       this.markers.set(stream.id, marker);
     }
   }

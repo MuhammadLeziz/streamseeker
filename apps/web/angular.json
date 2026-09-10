@@ -4,13 +4,11 @@
   "cli": {
     "packageManager": "npm",
     "analytics": "cb2bdd76-ebe7-40ff-8c17-d1b244373cf7",
-    "schematicCollections": [
-      "angular-eslint"
-    ]
+    "schematicCollections": ["angular-eslint"]
   },
   "newProjectRoot": "projects",
   "projects": {
-    "Manara": {
+    "StreamSeeker": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -35,11 +33,10 @@
             ],
             "styles": [
               "../../node_modules/leaflet/dist/leaflet.css",
+              "../../node_modules/leaflet.markercluster/dist/MarkerCluster.css",
               "src/styles.scss"
             ],
-            "allowedCommonJsDependencies": [
-              "leaflet"
-            ]
+            "allowedCommonJsDependencies": ["leaflet", "leaflet.markercluster"]
           },
           "configurations": {
             "production": {
@@ -75,10 +72,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Manara:build:production"
+              "buildTarget": "StreamSeeker:build:production"
             },
             "development": {
-              "buildTarget": "Manara:build:development"
+              "buildTarget": "StreamSeeker:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -89,10 +86,7 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "src/**/*.ts",
-              "src/**/*.html"
-            ]
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
         }
       }

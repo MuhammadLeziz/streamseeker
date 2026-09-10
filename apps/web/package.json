@@ -1,5 +1,5 @@
 {
-  "name": "@manara/web",
+  "name": "@streamseeker/web",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -23,7 +23,7 @@
     "@ngrx/entity": "^22.0.0",
     "@ngrx/store": "^22.0.0",
     "@ngrx/store-devtools": "^22.0.0",
-    "@manara/shared": "*",
+    "@streamseeker/shared": "*",
     "leaflet": "^1.9.4",
     "leaflet.markercluster": "^1.5.3",
     "rxjs": "~7.8.0",

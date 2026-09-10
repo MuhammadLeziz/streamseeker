@@ -31,6 +31,45 @@ body {
   transform: scale(1.35);
 }
 
+/*
+ * Cluster badge.
+ *
+ * Neutral, not a category colour: a cluster is a bag of mixed categories and
+ * colouring it any one of them would be a lie about the data. The amber ring
+ * is the interaction accent, and clicking a cluster is exactly that.
+ *
+ * The plugin sets the element's width and height from iconSize, so the badge
+ * fills its own icon box rather than carrying a second set of dimensions.
+ */
+.stream-cluster {
+  display: grid;
+  place-items: center;
+}
+
+.stream-cluster__body {
+  display: grid;
+  place-items: center;
+  inline-size: 100%;
+  block-size: 100%;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  background: color-mix(in srgb, var(--bg-panel) 88%, transparent);
+  box-shadow:
+    0 0 0 4px color-mix(in srgb, var(--accent) 10%, transparent),
+    0 4px 12px rgb(0 0 0 / 45%);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-variant-numeric: tabular-nums;
+  backdrop-filter: blur(6px);
+  transition: transform var(--transition);
+}
+
+.stream-cluster:hover .stream-cluster__body {
+  transform: scale(1.1);
+  border-color: var(--accent);
+}
+
 .leaflet-container {
   font: inherit;
   background: var(--bg-raised);
@@ -71,13 +110,4 @@ body {
 
 .leaflet-control-attribution a {
   color: var(--text-secondary);
-}
-
-/* On a phone the player becomes a bottom sheet and takes the corner the zoom
-   buttons occupied. Touch pinch-zoom covers the same ground, so the control
-   steps aside rather than fighting for the space. */
-@media (max-width: 720px) {
-  .leaflet-control-zoom {
-    display: none;
-  }
 }

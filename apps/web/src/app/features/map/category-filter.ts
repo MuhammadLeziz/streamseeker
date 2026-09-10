@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
-import type { ICategoryMeta, StreamCategory } from '@manara/shared';
+import type { ICategoryMeta, StreamCategory } from '@streamseeker/shared';
 
 export interface ICategoryOption extends ICategoryMeta {
   readonly count: number;
@@ -66,23 +66,25 @@ export function categoryLabel(meta: ICategoryMeta): string {
         flex: 1;
       }
 
-      /* A single scrolling row rather than a column: the panel is wide and
-         short, and the categories are a filter strip, not a menu. */
+      /* Wraps rather than scrolls.
+
+         This was one scrolling row with the scrollbar hidden and a fade at the
+         trailing edge, which was fine while four categories fitted. At ten it
+         stopped working: a container that overflows only horizontally does not
+         respond to a mouse wheel at all, and with the scrollbar hidden there
+         was nothing left to drag either. The chips past the fold were simply
+         unreachable on a desktop.
+
+         Wrapping needs no gesture and no affordance. The catalogue can reach
+         fifteen categories, which is three rows in a panel that has the height
+         to spare. */
       .chips {
         display: flex;
+        flex-wrap: wrap;
         gap: 0.375rem;
         margin: 0;
         padding: 0;
         list-style: none;
-        overflow-x: auto;
-        scrollbar-width: none;
-        /* Fades the strip out at the trailing edge so a cut-off chip reads as
-           "there is more" instead of as a rendering fault. */
-        mask-image: linear-gradient(to right, #000 calc(100% - 1.5rem), transparent);
-      }
-
-      .chips::-webkit-scrollbar {
-        display: none;
       }
 
       .chip {
