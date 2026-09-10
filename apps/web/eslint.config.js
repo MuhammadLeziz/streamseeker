@@ -42,7 +42,10 @@ module.exports = defineConfig([
       // 'padded-blocks': ['error', { classes: 'always' }],
       quotes: ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
       'object-curly-spacing': ['warn', 'always'],
-      'template-curly-spacing': ['warn', 'always'],
+      // template-curly-spacing отключено намеренно: с 'always' оно требует
+      // пробелы внутри ${ }, а prettier их убирает. Правила конфликтуют,
+      // из-за чего любой шаблонный литерал не проходит линт.
+      'template-curly-spacing': 'off',
       semi: 'warn',
       'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
       '@typescript-eslint/explicit-member-accessibility': [

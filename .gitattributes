@@ -1,0 +1,13 @@
+# Нормализуем переводы строк: в репозитории всегда LF.
+# Локально Windows получит CRLF, а GitLab CI собирает на Linux.
+* text=auto eol=lf
+
+# Бинарные файлы не трогаем.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.pdf binary
