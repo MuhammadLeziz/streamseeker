@@ -10,8 +10,8 @@ import {
   viewChild,
 } from '@angular/core';
 import * as L from 'leaflet';
-import { CATEGORY_META } from '@world-watcher/shared';
-import type { IStream } from '@world-watcher/shared';
+import { CATEGORY_META } from '@manara/shared';
+import type { IStream } from '@manara/shared';
 
 /** Opening view: Middle East and Central Asia in frame. */
 const INITIAL_CENTER: L.LatLngExpression = [30, 45];

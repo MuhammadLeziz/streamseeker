@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input, output } from '@angular/core';
 import { DomSanitizer, type SafeResourceUrl } from '@angular/platform-browser';
-import type { IStream } from '@world-watcher/shared';
+import type { IStream } from '@manara/shared';
 
 @Component({
   selector: 'app-stream-player',

@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import type { Prisma } from '@prisma/client';
-import { countriesOfRegion } from '@world-watcher/shared';
-import type { IStream, IStreamListResponse } from '@world-watcher/shared';
+import { countriesOfRegion } from '@manara/shared';
+import type { IStream, IStreamListResponse } from '@manara/shared';
 
 import { PrismaService } from '../prisma/prisma.service';
 import { ListStreamsQuery } from './dto/list-streams-query.dto';

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import type { IStream, IStreamListResponse } from '@world-watcher/shared';
+import type { IStream, IStreamListResponse } from '@manara/shared';
 
 import { environment } from '../../../environments/environment';
 

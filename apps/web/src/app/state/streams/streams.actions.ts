@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import type { Region, IStream, StreamCategory } from '@world-watcher/shared';
+import type { Region, IStream, StreamCategory } from '@manara/shared';
 
 export const StreamsPageActions = createActionGroup({
   source: 'Streams Page',

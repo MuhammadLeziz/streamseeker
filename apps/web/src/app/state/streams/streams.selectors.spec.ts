@@ -1,4 +1,4 @@
-import type { IStream } from '@world-watcher/shared';
+import type { IStream } from '@manara/shared';
 
 import { selectVisibleStreams } from './streams.selectors';
 import { streamsAdapter, type IStreamsState } from './streams.reducer';

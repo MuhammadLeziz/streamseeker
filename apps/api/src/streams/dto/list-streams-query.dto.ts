@@ -1,7 +1,7 @@
 import { Transform } from 'class-transformer';
 import { IsArray, IsIn, IsNumber, IsOptional, IsString, Length } from 'class-validator';
-import { REGIONS, STREAM_CATEGORIES, STREAM_STATUSES } from '@world-watcher/shared';
-import type { Region, StreamCategory, StreamStatus } from '@world-watcher/shared';
+import { REGIONS, STREAM_CATEGORIES, STREAM_STATUSES } from '@manara/shared';
+import type { Region, StreamCategory, StreamStatus } from '@manara/shared';
 
 /**
  * Splits `?categories=mosque,city` into a list.

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
-import { CATEGORY_META } from '@world-watcher/shared';
-import type { IStream } from '@world-watcher/shared';
+import { CATEGORY_META } from '@manara/shared';
+import type { IStream } from '@manara/shared';
 
 import { categoryLabel } from './category-filter';
 

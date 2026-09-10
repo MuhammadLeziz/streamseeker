@@ -9,7 +9,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
-import type { StreamCategory } from '@world-watcher/shared';
+import type { StreamCategory } from '@manara/shared';
 
 import { StreamsPageActions } from '../../state/streams/streams.actions';
 import {

@@ -5,7 +5,7 @@ start.
 
 ## Where things are
 
-- Repository: `https://gitlab.com/muhammadleziz/world-watcher`, private, branch `main`
+- Repository: `https://gitlab.com/muhammadleziz/manara`, private, branch `main`
 - `npm install && npm run start:web` brings the app up on port 4200
 - The API needs PostgreSQL; see "Running it" in the README
 
@@ -84,3 +84,7 @@ An npm workspaces monorepo:
 - A YouTube Data API key, needed only for viewer counts and exact live status.
   Basic liveness works through the keyless oEmbed endpoint.
 - Docker Desktop, or any PostgreSQL, to generate the first migration.
+- Renaming the GitLab project from `world-watcher` to `manara`. The URL above
+  already says `manara`; until the rename happens it is aspirational. GitLab
+  leaves a redirect from the old path, but `git remote set-url` still has to be
+  run locally afterwards.

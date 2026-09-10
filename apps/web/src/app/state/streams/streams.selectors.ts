@@ -1,6 +1,6 @@
 import { createSelector } from '@ngrx/store';
-import { CATEGORY_META, STREAM_CATEGORIES } from '@world-watcher/shared';
-import type { IStream, StreamCategory } from '@world-watcher/shared';
+import { CATEGORY_META, STREAM_CATEGORIES } from '@manara/shared';
+import type { IStream, StreamCategory } from '@manara/shared';
 
 import { streamsAdapter, streamsFeature, type IStreamFilters } from './streams.reducer';
 

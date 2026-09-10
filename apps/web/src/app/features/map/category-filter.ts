@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
-import type { ICategoryMeta, StreamCategory } from '@world-watcher/shared';
+import type { ICategoryMeta, StreamCategory } from '@manara/shared';
 
 export interface ICategoryOption extends ICategoryMeta {
   readonly count: number;

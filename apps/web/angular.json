@@ -10,7 +10,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "WorldWatcher": {
+    "Manara": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -75,10 +75,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "WorldWatcher:build:production"
+              "buildTarget": "Manara:build:production"
             },
             "development": {
-              "buildTarget": "WorldWatcher:build:development"
+              "buildTarget": "Manara:build:development"
             }
           },
           "defaultConfiguration": "development"

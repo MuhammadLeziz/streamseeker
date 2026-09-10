@@ -1,5 +1,5 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
-import type { IStream, IStreamListResponse } from '@world-watcher/shared';
+import type { IStream, IStreamListResponse } from '@manara/shared';
 
 import { ListStreamsQuery } from './dto/list-streams-query.dto';
 import { StreamsService } from './streams.service';
