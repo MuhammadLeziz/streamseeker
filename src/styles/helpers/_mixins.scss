@@ -1,0 +1,98 @@
+@use 'sass:math';
+
+// 1. Адаптивный шрифт (fluid typography)
+@mixin fluid-text($max: 48, $min: 16) {
+  $maxViewportWidth: 1440;
+  $minViewportWidth: 360;
+
+  $maxSize: math.div($max, 16);
+  $minSize: math.div($min, 16);
+  $maxWidth: math.div($maxViewportWidth, 16);
+  $minWidth: math.div($minViewportWidth, 16);
+
+  $slope: math.div(($maxSize - $minSize), ($maxWidth - $minWidth));
+  $yAxisIntersection: -$minWidth * $slope + $minSize;
+
+  font-size: clamp(
+    #{$minSize * 1rem},
+    #{$yAxisIntersection * 1rem} + #{$slope * 100vw},
+    #{$maxSize * 1rem}
+  );
+}
+
+// $max — размер из desktop макета (px без единиц)
+// $min — размер из мобильного макета (px без единиц)
+// Пример: @include fluid-text(48, 24);
+
+// 2. Универсальный fluid для любого CSS-свойства
+@mixin fluid($property, $max, $min) {
+  $maxViewportWidth: 1440;
+  $minViewportWidth: 360;
+
+  $maxSize: math.div($max, 16);
+  $minSize: math.div($min, 16);
+  $maxWidth: math.div($maxViewportWidth, 16);
+  $minWidth: math.div($minViewportWidth, 16);
+
+  $slope: math.div(($maxSize - $minSize), ($maxWidth - $minWidth));
+  $yAxisIntersection: -$minWidth * $slope + $minSize;
+
+  #{$property}: clamp(
+    #{$minSize * 1rem},
+    #{$yAxisIntersection * 1rem} + #{$slope * 100vw},
+    #{$maxSize * 1rem}
+  );
+}
+
+// 3. Скрыть / показать через opacity+visibility
+@mixin hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@mixin show {
+  opacity: 1;
+  visibility: visible;
+}
+
+// 4. Центрирование через flex
+@mixin flex-center($isInline: false) {
+  @if $isInline {
+    display: inline-flex; // по размеру контента
+  } @else {
+    display: flex; // на всю ширину
+  }
+
+  justify-content: center;
+  align-items: center;
+}
+
+// 5. Абсолютное центрирование (родитель должен иметь position: relative)
+@mixin abs-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+}
+
+// 6. Квадратный элемент
+@mixin square($size) {
+  width: $size;
+  height: $size;
+}
+
+// @include square(rem(48)); → 48x48px
+
+// 7. Visually hidden (скрыт визуально, доступен скринридерам)
+@mixin visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  clip-path: inset(100%) !important;
+  clip: rect(0 0 0 0) !important;
+  overflow: hidden !important;
+}

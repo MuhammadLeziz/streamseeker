@@ -1,0 +1,22 @@
+@use 'helpers' as *;
+
+:root {
+  --font-family: 'Nunito Sans', sans-serif;
+
+  --color-white: #fdfdfd;
+  --color-white-alt: #fff;
+  --color-yellow: #f2be22;
+  --color-black-alt: #000;
+  --color-black: #18121e;
+  --color-green: #1a3e3e;
+
+  --border-radius: #{rem(4)};
+  --border-radius-mid: #{rem(6)};
+  --border-radius-big: #{rem(10)};
+
+  --container-width: #{rem(1180)};
+  --container-padding-inline: #{rem(16)};
+  --transition: all 200ms linear;
+
+  --header-height: #{rem(121)};
+}

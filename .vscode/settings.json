@@ -1,0 +1,25 @@
+{
+  // 1. Включает расширение ESLint для этого проекта
+  "eslint.enable": true,
+  // 2. Указывает, какие типы файлов ESLint должен проверять на ошибки на лету
+  // (проверяем TypeScript-код и HTML-шаблоны Angular)
+  "eslint.validate": ["typescript", "html"],
+  // 3. Назначает Prettier главным "парикмахером" (форматтером) по умолчанию
+  // (вместо стандартного встроенного форматирования VS Code)
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // 4. Размер отступа при нажатии клавиши Tab — строго 2 пробела (по требованию нашего ДЗ №26)
+  "editor.tabSize": 2,
+  // 5. Вставлять реальные пробелы вместо невидимого символа табуляции (\t) при нажатии Tab
+  "editor.insertSpaces": true,
+  // 6. МАГИЯ: Автоматически выравнивать код через Prettier в момент нажатия Ctrl + S
+  "editor.formatOnSave": true,
+  // 7. МАГИЯ: Автоматически запускать авто-исправление ошибок ESLint (let -> const, кавычки, точки с запятой)
+  // прямо в момент нажатия Ctrl + S
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  } // чтобы vscode не ломал html когда нажимаем на ctrl s
+}
