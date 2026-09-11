@@ -55,3 +55,6 @@ apps/web/public/streams.json
 # Prisma generates its client into node_modules, which is already ignored.
 # Migrations under apps/api/prisma/migrations are committed on purpose: they
 # are the record of how the schema got to its current shape.
+
+# claude code local config
+.claude/
