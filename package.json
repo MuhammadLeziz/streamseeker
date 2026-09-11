@@ -25,9 +25,16 @@
     "db:generate": "npm run db:generate -w @streamseeker/api",
     "db:migrate": "npm run db:migrate -w @streamseeker/api",
     "db:seed": "npm run db:seed -w @streamseeker/api",
-    "serve:dist": "node scripts/serve-dist.mjs"
+    "serve:dist": "node scripts/serve-dist.mjs",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,html}": "eslint --fix",
+    "*.{scss,css,json,md,yml,yaml}": "prettier --write"
   },
   "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^17.5.1",
     "prettier": "^3.9.6"
   },
   "allowScripts": {

@@ -26,7 +26,7 @@ the seeking, and everything else is in service of them.
 | -------------- | ----------------------------------------------------- |
 | Front end      | Angular 22, NgRx 22 (Store, Effects, Entity), Leaflet |
 | Back end       | NestJS 12, PostgreSQL, Prisma                         |
-| CI/CD          | GitLab CI                                             |
+| CI/CD          | GitHub Actions                                             |
 | Infrastructure | Docker, docker compose                                |
 
 ## Layout
