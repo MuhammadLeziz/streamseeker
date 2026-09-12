@@ -1,7 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "installCommand": "npm install --ignore-scripts --no-audit --no-fund",
-  "buildCommand": "npm run build:shared && npm run build:catalogue && npm --workspace @streamseeker/web run build",
+  "buildCommand": "npm --workspace @streamseeker/shared run build && node scripts/build-catalogue.mjs && npm --workspace @streamseeker/web run build",
   "outputDirectory": "apps/web/dist/StreamSeeker/browser",
   "rewrites": [
     { "source": "/((?!.*\\.).*)", "destination": "/index.html" }
