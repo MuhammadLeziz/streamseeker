@@ -1,4 +1,4 @@
-# StreamSeeker - https://streamseeker-24e2obysy-001leziz2006-4064s-projects.vercel.app/
+# StreamSeeker - https://streamseeker-api.vercel.app/
 
 A map of live streams from around the world, with the densest coverage over the
 Muslim world and the CIS. Inspired by [worldwatcher.live](https://worldwatcher.live/),
