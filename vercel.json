@@ -1,0 +1,23 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "npm install --ignore-scripts --no-audit --no-fund",
+  "buildCommand": "npm run build:shared && npm run build:catalogue && npm --workspace @streamseeker/web run build",
+  "outputDirectory": "apps/web/dist/StreamSeeker/browser",
+  "rewrites": [
+    { "source": "/((?!.*\\.).*)", "destination": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/streams.json",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=300, s-maxage=300" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(js|css|woff2|png|svg|ico)$",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
+  ]
+}
